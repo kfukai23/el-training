@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Schedule:
+https://docs.google.com/spreadsheets/d/1Dm5GPaeZZ2hnU8SnUpZlDOZFFXtPF6fCtXM-2Nrud2A/edit#gid=0
