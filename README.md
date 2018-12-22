@@ -35,17 +35,17 @@ Things you may want to cover:
 
 
 ### Task Table
-| column_name | data_type | not_null | default | auto increment | index                                       | comments                                  |     
-| ----------- | --------- | -------- | ------- | -------------- | ------------------------------------------- | -------------------------------------------- | 
-| ta          | sk_id     | integer  | true    |                |                                             |                                              |     
-| nam         | e         | string   | true    |                |                                             |                                              |     
-| prio        | rity      | integer  |         |                |                                             |                                              |     
-| description | text      |          |         |                |                                             |                                              |     
-| status      | integer   | true     |         |                | use enum                                    |                                              |     
-| label_id    | integer   |          |         |                |                                             |                                              |     
-| user_id     | integer   |          |         |                | will be not_null after login function added |                                              |     
-| created_at  |           |          |         |                |                                             |                                              |     
-| updated_at  |           |          |         |                |                                             |                                              |     
+| column_name | data_type | not_null | default | auto increment | index                                       | comments |
+| ----------- | --------- | -------- | ------- | -------------- | ------------------------------------------- | -------- |
+| task_id     | integer   | true     |         |                |                                             |          |
+| name        | string    | true     |         |                |                                             |          |
+| priority    | integer   |          |         |                |                                             |          |
+| description | text      |          |         |                |                                             |          |
+| status      | integer   | true     |         |                | use enum                                    |          |
+| label_id    | integer   |          |         |                |                                             |          |
+| user_id     | integer   |          |         |                | will be not_null after login function added |          |
+| created_at  |           |          |         |                |                                             |          |
+| updated_at  |           |          |         |                |                                             |          |
 
 
 ### Label Table
