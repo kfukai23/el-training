@@ -68,3 +68,7 @@ Things you may want to cover:
 | is_unsubscribed    |           |          |         |                |       |          |
 | created_at         |           |          |         |                |       |          |
 | updated_at         |           |          |         |                |       |          |
+
+
+## Project Schedule:
+https://docs.google.com/spreadsheets/d/1Dm5GPaeZZ2hnU8SnUpZlDOZFFXtPF6fCtXM-2Nrud2A/edit#gid=0
