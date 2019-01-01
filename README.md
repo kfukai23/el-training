@@ -35,17 +35,18 @@ Things you may want to cover:
 
 
 ### Task Table
-| column_name | data_type | not_null | default | auto increment | index                                       | comments |
-| ----------- | --------- | -------- | ------- | -------------- | ------------------------------------------- | -------- |
-| task_id     | integer   | true     |         |                |                                             |          |
-| name        | string    | true     |         |                |                                             |          |
-| priority    | integer   |          |         |                |                                             |          |
-| description | text      |          |         |                |                                             |          |
-| status      | integer   | true     |         |                | use enum                                    |          |
-| label_id    | integer   |          |         |                |                                             |          |
-| user_id     | integer   |          |         |                | will be not_null after login function added |          |
-| created_at  |           |          |         |                |                                             |          |
-| updated_at  |           |          |         |                |                                             |          |
+| column_name | data_type | not_null | default | auto increment | index | comments                                       |
+| ----------- | --------- | -------- | ------- | -------------- | ----- | ---------------------------------------------- |
+| task_id     | integer   | true     |         |                |       |                                                |
+| name        | string    | true     |         |                |       | [validation] until 30 characters               |
+| priority    | integer   |          |         |                |       |                                                |
+| description | text      |          |         |                |       |                                                |
+| status      | integer   | true     | 0       |                |       | [use enum] 0: not yet, 1: in progress, 2: done |
+| label_id    | integer   |          |         |                |       |                                                |
+| user_id     | integer   |          |         |                |       | will be not_null after login function added    |
+| deadline    | date      |          |         |                |       | [validation] should be today or later          |
+| created_at  |           |          |         |                |       |                                                |
+| updated_at  |           |          |         |                |       |                                                |
 
 
 ### Label Table
@@ -59,15 +60,15 @@ Things you may want to cover:
 
 
 ### User Table
-| column_name        | data_type | not_null | default | auto increment | index | comments |
-| ------------------ | --------- | -------- | ------- | -------------- | ----- | -------- |
-| user_id            | integer   | true     |         |                |       |          |
-| name               | string    | true     |         |                |       |          |
-| mail_address       | string    | true     |         |                |       |          |
-| encrypted_password | text      | true     |         |                |       |          |
-| is_unsubscribed    |           |          |         |                |       |          |
-| created_at         |           |          |         |                |       |          |
-| updated_at         |           |          |         |                |       |          |
+| column_name        | data_type | not_null | default | auto increment | comments                                | index |
+| ------------------ | --------- | -------- | ------- | -------------- | --------------------------------------- | ----- |
+| user_id            | integer   | true     |         |                |                                         |       |
+| name               | string    | true     |         |                |                                         |       |
+| mail_address       | string    | true     |         |                | [validation] should be based on RFC2822 |       |
+| encrypted_password | text      | true     |         |                |                                         |       |
+| is_unsubscribed    | boolean   | true     | false   |                |                                         |       |
+| created_at         |           |          |         |                |                                         |       |
+| updated_at         |           |          |         |                |                                         |       |
 
 
 ## Project Schedule:

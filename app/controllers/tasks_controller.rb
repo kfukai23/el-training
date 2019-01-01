@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @tasks = Task.all.order("created_at DESC")
   end
 
   def show
@@ -16,16 +16,23 @@ class TasksController < ApplicationController
   end
 
   def create
-    task = Task.new(task_params)
-    task.save!
-    redirect_to tasks_path, notice: "タスク「#{task.name}」を登録しました。"
-    # redirect_to tasks_path, alert: "タスク「#{task.name}」を登録しました。"
+    @task = Task.new(task_params)
+
+    if @task.save
+      redirect_to tasks_path, notice: "タスク「#{@task.name}」を登録しました。"
+    else
+      render :new
+    end
   end
 
   def update
     @task = Task.find(params[:id])
-    @task.update!(task_params)
-    redirect_to tasks_path, notice: "タスク「#{task.name}」を登録しました。"
+
+    if @task.update(task_params)
+      redirect_to tasks_path, notice: "タスク「#{@task.name}」を更新しました。"
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -36,6 +43,6 @@ class TasksController < ApplicationController
 
 private
     def task_params
-      params.require(:task).permit(:name, :description)
+      params.require(:task).permit(:name, :description, :priority, :status, :deadline)
     end
 end
