@@ -10,4 +10,13 @@
   .form-group
     = f.label :description
     = f.text_area :description, rows: 5, class: 'form-control', id: 'task_description'
+  .form-group
+    = f.label :priority
+    = f.select :priority, Task.priorities.keys, class: 'form-control', id: 'task_priority'
+  .form-group
+    = f.label :status
+    = f.select :status, Task.statuses.keys, class: 'form-control', id: 'task_status'
+  .form-group
+    = f.label :deadline
+    = f.text_field :deadline, class: 'form-control', id: 'task_deadline'
   = f.submit nil, class: 'btn btn-primary'
