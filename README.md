@@ -1,28 +1,31 @@
 # README
+このアプリケーションは、RubyおよびRuby On Railsによる基本的なWebアプリケーション作成の学習過程において制作されたものです。
+カリキュラムは[株式会社万葉の新入社員教育用カリキュラム https://everyleaf.com/](https://github.com/everyleaf/el-training)を用いています。
+アプリケーションはhttps://el-training-koalamask.herokuapp.com/ にて公開しています。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Versions
+Ruby 2.5.3
+Rails 5.2.2
 
-Things you may want to cover:
+## Deployment instructions
+initialize
+```
+$ heroku login
+$ heroku git:remote -a el-training-koalamask
+$ git push heroku master
+$ heroku run bin/rails db:migrate
+```
 
-* Ruby version
+update
+```
+$ heroku login
+$ git add -A
+$ git commit -m "Update application"
+$ git push heroku master
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
+* if db has been changed
+$ heroku run bin/rails db:migrate
+```
 
 ## Table Schema
 
