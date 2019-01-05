@@ -14,3 +14,17 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+// DOM操作試行用 
+// document.addEventListener('turbolinks:load', function() {
+//     document.querySelectorAll('th').forEach(function(th) {
+//         th.addEventListener('mouseover', function(e) {
+//             e.currentTarget.style.backgroundColor = '#eff';
+//             console.log(th)
+//         })
+
+//         th.addEventListener('mouseout', function(e) {
+//             e.currentTarget.style.backgroundColor = '';
+//         })
+//     })
+// })
