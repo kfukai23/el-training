@@ -1,7 +1,14 @@
 # README
 このアプリケーションは、RubyおよびRuby On Railsによる基本的なWebアプリケーション作成の学習過程において制作されたものです。
-カリキュラムは[株式会社万葉の新入社員教育用カリキュラム https://everyleaf.com/](https://github.com/everyleaf/el-training)を用いています。
-アプリケーションはhttps://el-training-koalamask.herokuapp.com/ にて公開しています。
+
+### カリキュラム
+[株式会社万葉の新入社員教育用カリキュラム https://everyleaf.com/](https://github.com/everyleaf/el-training)
+
+### 参考書籍
+[現場で使える Ruby on Rails 5速習実践ガイド](https://www.amazon.co.jp/%E7%8F%BE%E5%A0%B4%E3%81%A7%E4%BD%BF%E3%81%88%E3%82%8B-Ruby-Rails-5%E9%80%9F%E7%BF%92%E5%AE%9F%E8%B7%B5%E3%82%AC%E3%82%A4%E3%83%89-%E5%A4%A7%E5%A0%B4%E5%AF%A7%E5%AD%90/dp/4839962227)
+
+### アプリケーション公開先
+https://el-training-koalamask.herokuapp.com/
 
 ## Versions
 Ruby 2.5.3
