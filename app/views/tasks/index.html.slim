@@ -8,7 +8,7 @@ table.table.table-hover
     tr
       th= Task.human_attribute_name(:status)
       / th= Task.human_attribute_name(:deadline)
-      th= sortable "deadline", "Deadline"
+      th= sortable "deadline", "Deadline" 
       / th= Task.human_attribute_name(:name)
       th= sortable "name", "Name"
       th= Task.human_attribute_name(:priority)
