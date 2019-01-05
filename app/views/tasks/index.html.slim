@@ -6,14 +6,22 @@ h1 タスク一覧
 table.table.table-hover
   thead.thead-default
     tr
-      th= Task.human_attribute_name(:name)
+      th= Task.human_attribute_name(:status)
+      / th= Task.human_attribute_name(:deadline)
+      th= sortable "deadline", "Deadline"
+      / th= Task.human_attribute_name(:name)
+      th= sortable "name", "Name"
+      th= Task.human_attribute_name(:priority)
       th= Task.human_attribute_name(:created_at)
       th 
       th 
   tbody
     - @tasks.each do |task|
       tr
+        td= task.status
+        td= task.deadline
         td= link_to task.name, task_path(task)
+        td= task.priority
         td= task.created_at
         td= link_to '編集', edit_task_path(task), class: 'btn btn-primary mr-3'
         td= link_to '削除', task_path(task), method: :delete, data: { confirm: "タスク「#{task.name}」を削除します。よろしいですか？" }, class: 'btn btn-primary mr-3'
