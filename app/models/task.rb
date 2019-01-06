@@ -4,6 +4,8 @@ class Task < ApplicationRecord
     validates :status, presence: true
     validate :deadline_is_today_or_later
 
+    belongs_to :user
+
     def deadline_is_today_or_later
         if deadline.present? && deadline < Date.today
             errors.add(:deadline, 'は昨日以前の日付は設定できません')
