@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @tasks = Task.all.order(sort_column + ' ' + sort_direction).search(params[:search])
+    # @tasks = Task.all.order(sort_column + ' ' + sort_direction).search(params[:search])
+    @tasks = Task.all.order(sort_column + ' ' + sort_direction).search(params[:search]).page(params[:page])
   end
 
   def show
