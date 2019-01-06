@@ -70,15 +70,15 @@ $ heroku run bin/rails db:migrate
 
 
 ### User Table
-| column_name        | data_type | not_null | default | auto increment | comments                                | index |
-| ------------------ | --------- | -------- | ------- | -------------- | --------------------------------------- | ----- |
-| user_id            | integer   | true     |         |                |                                         |       |
-| name               | string    | true     |         |                |                                         |       |
-| mail_address       | string    | true     |         |                | [validation] should be based on RFC2822 |       |
-| encrypted_password | text      | true     |         |                |                                         |       |
-| is_unsubscribed    | boolean   | true     | false   |                |                                         |       |
-| created_at         |           |          |         |                |                                         |       |
-| updated_at         |           |          |         |                |                                         |       |
+| column_name     | data_type | not_null | default | auto increment | comments                                | index |
+| --------------- | --------- | -------- | ------- | -------------- | --------------------------------------- | ----- |
+| user_id         | integer   | true     |         |                |                                         |       |
+| name            | string    | true     |         |                |                                         |       |
+| email           | string    | true     |         |                | [validation] should be based on RFC2822 |       |
+| password_digest | string    | true     |         |                |                                         |       |
+| is_unsubscribed | boolean   | true     | false   |                |                                         |       |
+| created_at      |           |          |         |                |                                         |       |
+| updated_at      |           |          |         |                |                                         |       |
 
 
 ## Project Schedule:
