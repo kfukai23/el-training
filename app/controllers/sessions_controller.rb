@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
+    skip_before_action :login_required
 
     def new
-
     end
 
     def create
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
             session[:user_id] = user.id
             redirect_to tasks_path, notice: "こんにちは、#{user.name}様。"
         else
-            render: new
+            render :new
         end
     end
 
