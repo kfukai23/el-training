@@ -1,0 +1,2 @@
+class MyCustomError < StandardError
+end
