@@ -1,4 +1,6 @@
 class Admin::TasksController < ApplicationController
+  before_action :require_admin
+
   def index
     @tasks = Task.all.order(sort_column + ' ' + sort_direction).search(params[:search]).page(params[:page]).includes(:user)
   end
