@@ -68,6 +68,13 @@ $ heroku run bin/rails db:migrate
 | created_at  |           |          |         |                |       |          |
 | updated_at  |           |          |         |                |       |          |
 
+### Label_task Table
+| column_name | data_type | not_null | default | auto increment | index | comments |
+| ----------- | --------- | -------- | ------- | -------------- | ----- | -------- |
+| task_id     | integer   | true     |         |                |       |          |
+| label_id    | integer   | true     |         |                |       |          |
+| created_at  |           |          |         |                |       |          |
+| updated_at  |           |          |         |                |       |          |
 
 ### User Table
 | column_name     | data_type | not_null | default | auto increment | comments                                | index |
