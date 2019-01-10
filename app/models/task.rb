@@ -5,6 +5,7 @@ class Task < ApplicationRecord
     validate :deadline_is_today_or_later
 
     belongs_to :user
+    has_and_belongs_to_many :labels
 
     def deadline_is_today_or_later
         if deadline.present? && deadline < Date.today
