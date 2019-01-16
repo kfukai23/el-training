@@ -1,0 +1,47 @@
+h1 タスク一覧
+
+/ .mb-3
+/ = form_tag(tasks_path, :method => 'get') do
+/ 	= select_tag :search, options_for_select(["未着手", "着手中", "完了"]), class: 'form-control', id: 'task_status'
+/   = submit_tag 'Search', :name => nil
+
+
+= link_to '新規登録', new_task_path, class: 'btn btn-primary'
+
+.mb-3
+  = paginate @tasks
+  = page_entries_info @tasks
+
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      / th= sortable "user_id", "User ID"
+      / th= sortable "status", "Status"
+      / th= sortable "deadline", "Deadline" 
+      / th= sortable "name", "Name"
+      / th= sortable "priority", "Priority"
+      th User ID
+      th Status
+      th Deadline
+      th Name
+      th Priority
+      th= Task.human_attribute_name(:created_at)
+      / th= User
+      th 
+      th 
+  tbody
+    - @tasks.each do |task|
+      tr
+        td= task.user_id
+        td= task.status
+        td= task.deadline
+        td= link_to task.name, task_path(task)
+        td= task.priority
+        td= task.created_at
+        / td= task.user.name
+        td= link_to '編集', edit_task_path(task), class: 'btn btn-primary mr-3'
+        td= link_to '削除', task_path(task), method: :delete, data: { confirm: "タスク「#{task.name}」を削除します。よろしいですか？" }, class: 'btn btn-primary mr-3'
+
+
