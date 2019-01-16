@@ -3,8 +3,7 @@ class TasksController < ApplicationController
 
   def index
     # @tasks = Task.all.order(sort_column + ' ' + sort_direction).search(params[:search])
-    # @tasks = current_user.tasks.order(sort_column + ' ' + sort_direction).search(params[:search]).page(params[:page]).includes(:user)
-    @tasks = current_user.tasks.order(sort_column + ' ' + sort_direction).s
+    @tasks = current_user.tasks.order(sort_column + ' ' + sort_direction).search(params[:search]).page(params[:page]).includes(:user)
   end
 
   def show
