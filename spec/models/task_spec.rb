@@ -50,6 +50,38 @@ RSpec.describe Task, type: :model do
         )
         expect(task).not_to be_valid
       end
+
+      it '名前が31文字を超えると無効であること' do
+        user = User.create(
+          name: 'ユーザA',
+          email: 'a@example.com',
+          password: 'password'
+        )
+        task = user.tasks.new(
+          name: '1234567890123456789012345678901',
+          description: '最初のタスクのdescriptionです',
+          priority: 0,
+          status: '未着手',
+          deadline: Date.today + 1.days,
+        )
+        expect(task).not_to be_valid
+      end
+
+      it '期限が昨日以前だと無効であること' do
+        user = User.create(
+          name: 'ユーザA',
+          email: 'a@example.com',
+          password: 'password'
+        )
+        task = user.tasks.new(
+          name: '最初のタスク',
+          description: '最初のタスクのdescriptionです',
+          priority: 0,
+          status: '未着手',
+          deadline: Date.today - 1.days,
+        )
+        expect(task).not_to be_valid
+      end
     end
   end
 end
