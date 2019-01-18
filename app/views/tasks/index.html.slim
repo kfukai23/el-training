@@ -30,7 +30,7 @@ table.table.table-hover
       tr
         td= task.status
         td= task.deadline
-        td= link_to task.name, task_path(task)
+        td.name= link_to task.name, task_path(task)
         td= task.priority
         td= task.created_at
         / td= task.user.name

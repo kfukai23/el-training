@@ -3,8 +3,7 @@ class TasksController < ApplicationController
 
   def index
     # @tasks = Task.all.order(sort_column + ' ' + sort_direction).search(params[:search])
-    # @tasks = current_user.tasks.order(sort_column + ' ' + sort_direction).search(params[:search]).page(params[:page]).includes(:user)
-    @tasks = current_user.tasks.order(sort_column + ' ' + sort_direction).s
+    @tasks = current_user.tasks.order(sort_column + ' ' + sort_direction).search(params[:search]).page(params[:page]).includes(:user)
   end
 
   def show
@@ -55,7 +54,7 @@ private
     end
 
     def sort_column
-      Task.column_names.include?(params[:sort]) ? params[:sort] : "name"
+      Task.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
     end
 
 end
