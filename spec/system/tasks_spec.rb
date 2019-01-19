@@ -47,4 +47,36 @@ describe 'タスク管理機能', type: :system do
             end
         end
     end
+
+    describe '一覧表示機能' do    
+        before do
+            admin = FactoryBot.create(:user, admin: true)
+            user_a = FactoryBot.create(:user, name: 'ユーザーA', email: 'a@example.com')
+            FactoryBot.create(:task, name: "1番目", user: user_a, deadline: Date.today )
+            FactoryBot.create(:task, name: "2番目", user: user_a, deadline: Date.today + 1.days )
+            FactoryBot.create(:task, name: "3番目", user: user_a, deadline: Date.today + 2.days )
+        end
+    
+        context 'ユーザAがログインしているとき' do
+            before do
+                visit login_path
+                fill_in 'メールアドレス',  with: 'a@example.com'
+                    fill_in 'パスワード', with: 'password'
+                click_button 'ログインする'
+                click_on 'Deadline▲'
+            end
+        
+            it 'ユーザAが作成したタスクが終了期限の昇順に表示される' do 
+                within '.table' do
+                    task_deadlines = all('.deadline').map(&:text)
+                    expect_deadlines = []
+                    expect_deadlines << Date.today.to_s
+                    expect_deadlines << Date.today.succ.to_s
+                    expect_deadlines << Date.today.succ.succ.to_s
+                    expect(task_deadlines).to eq expect_deadlines 
+                end
+            end
+        end
+    end
+    
 end
