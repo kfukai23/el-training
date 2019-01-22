@@ -1,17 +1,24 @@
 h1 タスク一覧
 
-/ .mb-3
-/ = form_tag(tasks_path, :method => 'get') do
-/   = select_tag :search, options_for_select(["未着手", "着手中", "完了"]), class: 'form-control', id: 'task_status'
-/   = submit_tag 'Search', :name => nil
-
+.mb-3
+  = form_tag(tasks_path, :method => 'get') do
+    .form-row
+      .form-group.col-md-6
+        = label :task, :name
+        = text_field_tag :name, [], class: 'form-control'   
+      .form-group.col-md-3
+        = label :task, :status
+        = select_tag :status, options_for_select([["指定しない", nil], ["未着手"], ["着手中"], ["完了"]]), class: 'form-control'
+      .form-group.col-md-3
+        = label :task, :priority
+        = select_tag :priority, options_for_select([["指定しない", nil], ["低", 0], ["中", 1], ["高", 2]]), class: 'form-control'
+    = submit_tag 'Search', :name => nil, class: 'btn btn-light'
 
 = link_to '新規登録', new_task_path, class: 'btn btn-primary'
 
 .mb-3
   = paginate @tasks
   = page_entries_info @tasks
-
 
 .mb-3
 table.table.table-hover
