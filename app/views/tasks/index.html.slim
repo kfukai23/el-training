@@ -4,13 +4,13 @@ h1 タスク一覧
   = form_tag(tasks_path, :method => 'get') do
     .form-row
       .form-group.col-md-6
-        = label :task, :name
+        = label_tag :name
         = text_field_tag :name, [], class: 'form-control'   
       .form-group.col-md-3
-        = label :task, :status
+        = label_tag :status
         = select_tag :status, options_for_select([["指定しない", nil], ["未着手"], ["着手中"], ["完了"]]), class: 'form-control'
       .form-group.col-md-3
-        = label :task, :priority
+        = label_tag :priority
         = select_tag :priority, options_for_select([["指定しない", nil], ["低", 0], ["中", 1], ["高", 2]]), class: 'form-control'
     = submit_tag 'Search', :name => nil, class: 'btn btn-light'
 
@@ -29,7 +29,6 @@ table.table.table-hover
       th= sortable "name", "Name"
       th= sortable "priority", "Priority"
       th= Task.human_attribute_name(:created_at)
-      / th= User
       th 
       th 
   tbody
@@ -40,7 +39,6 @@ table.table.table-hover
         td.name= link_to task.name, task_path(task)
         td= task.priority
         td= task.created_at
-        / td= task.user.name
         td= link_to '編集', edit_task_path(task), class: 'btn btn-primary mr-3'
         td= link_to '削除', task_path(task), method: :delete, data: { confirm: "タスク「#{task.name}」を削除します。よろしいですか？" }, class: 'btn btn-primary mr-3'
 
