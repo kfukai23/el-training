@@ -15,11 +15,28 @@ class Task < ApplicationRecord
     enum priority: { 低: 0, 中: 1, 高: 2 }
     # enum status:   { 未着手: 0, 着手中: 1, 完了済: 2 }
 
-    def self.search(search)
-        if search
-            where(['status = ?', search])
-        else
+    #FIXME: 共通部分を抽象化する
+    def self.search_by_name(name)
+        if name == "" || name.nil?
             all
+        else
+            where(name: name)
+        end
+    end
+
+    def self.search_by_status(status)
+        if status == "" || status.nil?
+            all
+        else
+            where(status: status)
+        end
+    end
+
+    def self.search_by_priority(priority)
+        if priority == "" || priority.nil?
+            all
+        else
+            where(priority: priority)
         end
     end
 end
