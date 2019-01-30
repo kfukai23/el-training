@@ -45,7 +45,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'pry-doc'
-  gem 'faker'
 end
 
 group :development do
@@ -74,3 +73,4 @@ gem 'slim-rails'
 gem 'html2slim'
 gem 'bootstrap'
 gem 'kaminari'
+gem 'faker'
