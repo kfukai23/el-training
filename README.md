@@ -30,7 +30,7 @@ $ git add -A
 $ git commit -m "Update application"
 $ git push heroku master
 
-* if db has been changed
+* if db had been changed
 $ heroku run bin/rails db:migrate
 ```
 
