@@ -20,25 +20,15 @@ class Task < ApplicationRecord
         if name == "" || name.nil?
             all
         else
-            where(name: name)
+            where("name like '%" + name+ "%'")
         end
     end
 
-    def self.search_by_status(status)
-        if status == "" || status.nil?
+    def self.search(column, params)
+        if params == "" || params.nil?
             all
         else
-            where(status: status)
-        end
-    end
-
-    def self.search_by_priority(priority)
-        if priority == "" || priority.nil?
-            all
-        else
-            where(priority: priority)
+            where("#{column} = ?", params)
         end
     end
 end
-
-
