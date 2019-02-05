@@ -51,17 +51,17 @@ $ cd el-training
 
 3. Install Ruby 2.5.3 (If nessesary) 
 ```
-$ rbenv install 2.5.3（必要に応じて）
+$ rbenv install 2.5.3
 ```
 
 3. Set Ruby version to 2.53(If nessesary)
 ```
-$ rbenv local 2.5.3（必要に応じて）
+$ rbenv local 2.5.3
 ```
 
 4. Install Bundler 1.17.3(If nessesary)
 ```
-$ gem install bundler -v 1.17.3（必要に応じて）
+$ gem install bundler -v 1.17.3
 ```
 
 5. Install gems
