@@ -18,24 +18,16 @@ https://el-training-koalamask.herokuapp.com/
 
 #### The following User can be used:
 
-User as an admininstrator: 
 
-email: test_user_a@example.com
-password: password
+[User as an admininstrator] email: test_user_a@example.com,  password: password
 
-Common user: 
-
-email: test_user_b@example.com
-password: password
+[Common user] email: test_user_b@example.com,  password: password
   
 
 ## Requirement
 Ruby 2.5.3
-
-Bundler 1.17.3
-
-PostgreSQL 10.4
-
+Bundler 1.17.3, 
+PostgreSQL 11.1
 
 ## Installation
 

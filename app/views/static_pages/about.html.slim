@@ -1,25 +1,55 @@
-h1 README
-p このアプリケーションは、RubyおよびRuby On Railsによる基本的なWebアプリケーション作成の学習過程において制作されたものです。
+.mx-5.about
+  h2 About: このアプリケーションについて
+  hr
+  h4 ・これは何か
+  p このアプリケーションは、RubyおよびRuby On Railsによる基本的なWebアプリケーション作成の学習過程において制作されたものです。
+  p
+    | GitHubリポジトリ： 
+    = link_to "https://github.com/everyleaf/el-training", "https://github.com/everyleaf/el-training"
+  
+  h4 ・使用したカリキュラム
+  p 
+    | 株式会社万葉の新入社員教育用カリキュラム：
+    = link_to "https://github.com/everyleaf/el-training", "https://github.com/everyleaf/el-training"
 
-h3 カリキュラム
-span 株式会社万葉の新入社員教育用カリキュラム 
-span = link_to "https://github.com/everyleaf/el-training", "https://github.com/everyleaf/el-training" 
+  h4 ・参考書籍
+  p = link_to "現場で使える Ruby on Rails 5速習実践ガイド", "https://www.amazon.co.jp/%E7%8F%BE%E5%A0%B4%E3%81%A7%E4%BD%BF%E3%81%88%E3%82%8B-Ruby-Rails-5%E9%80%9F%E7%BF%92%E5%AE%9F%E8%B7%B5%E3%82%AC%E3%82%A4%E3%83%89-%E5%A4%A7%E5%A0%B4%E5%AF%A7%E5%AD%90/dp/4839962227"
 
-h3 参考書籍
-p = link_to "現場で使える Ruby on Rails 5速習実践ガイド", "https://www.amazon.co.jp/%E7%8F%BE%E5%A0%B4%E3%81%A7%E4%BD%BF%E3%81%88%E3%82%8B-Ruby-Rails-5%E9%80%9F%E7%BF%92%E5%AE%9F%E8%B7%B5%E3%82%AC%E3%82%A4%E3%83%89-%E5%A4%A7%E5%A0%B4%E5%AF%A7%E5%AD%90/dp/4839962227"
+  h4 ・なぜこのカリキュラムに取り組んだか
+  p 
+    | Ruby on Railsを一から学び直す目的で取り組みました。
+    br
+    | 本格的にプログラミングを始めた一年ほど前、初めての開発言語に選んだのがRubyでしたが、その頃はログイン周りや検索機能などはgemに頼りきりで内部の実装をよく理解できていませんでした。
+    br
+    | また、現在実務で開発に携われない状況が続いており、開発力の衰えを危惧しています。
+    br
+    | これらの理由から、もう一度基礎から学び直し再スタートを切るべく取り組みました。
 
-h3 バージョン情報
-p Ruby 2.5.3
-p  Rails 5.2.2
 
-h3 力を入れた点（該当箇所へのリンク掲載）
+  h4 ・バージョン情報
+  p Ruby 2.5.3, Ruby on Rails 5.2.2, Bundler 1.17.3, PostgreSQL 11.1
 
-h3 これから実装したい点
+  h4 ・これから実装したい点
+  p 
+    | ・機能面
+    br
+    | ラベル添付機能（一つのタスクに複数添付することができていない）
+    br
+    | UIの改善：配色など
+  p 
+    br
+    |・コード面
+    br
+    | CircleCIの導入
+    br
+    | テストコードのリファクタリング
+    br
+    | 反復記述箇所の共通化（検索機能、tasks_controller.rbのindexアクションなど）
 
-h3 困っている点（該当箇所へのリンク掲載）
-
-h3 ソースコード
-p = link_to "https://github.com/koalamask/el-training", "https://github.com/koalamask/el-training"
-
-h3 独自改良版
-p 本アプリケーションはRuby on Railsのみで構成されていますが、Vue.jsと組み合わせ、より使用感やデザイン性を向上させた発展形も作成してみました。よろしければ下記リンクからぜひご覧ください。
+  hr
+  h4 ・独自改良版
+  p
+    | 本アプリケーションはRuby on Railsのみで構成されていますが、Vue.jsと組み合わせ、より使用感やデザイン性を向上させた発展形も作成してみました。
+    br
+    | よろしければ下記リンクからぜひご覧ください。
+  p = link_to "https://github.com/everyleaf/el-training", "https://github.com/everyleaf/el-training"
