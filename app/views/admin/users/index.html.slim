@@ -1,4 +1,4 @@
-h1 ユーザー一覧
+h3.pt-4 ユーザー一覧
 
 = link_to '新規登録', new_admin_user_path, class: 'btn btn-primary'
 
@@ -24,7 +24,7 @@ table.table.table-hover
 				td= user.email
 				td= user.admin? ? 'あり' : 'なし'
 				td= user.tasks.count
-				td= user.created_at
-				td= user.updated_at
+				td= user.created_at.strftime('%Y-%m-%d %H:%M')
+				td= user.updated_at.strftime('%Y-%m-%d %H:%M')
 				td= link_to '編集', edit_admin_user_path(user), class: 'btn btn-primary mr-3'
-				td= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: "ユーザー「#{user.name}」を削除します。よろしいですか？" }, class: 'btn btn-primary mr-3'
+				td= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: "ユーザー「#{user.name}」を削除します。よろしいですか？" }, class: 'btn btn-warning mr-3'
