@@ -2,10 +2,10 @@
   h3.pt-4 About: このアプリケーションについて
   hr
   h4 ・これは何か
-  p このアプリケーションは、RubyおよびRuby On Railsによる基本的なWebアプリケーション作成の学習過程において制作されたものです。
+  p このアプリケーションは、RubyおよびRuby on Railsによる基本的なWebアプリケーション作成の学習過程において制作されたものです。
   p
     | GitHubリポジトリ： 
-    = link_to "https://github.com/everyleaf/el-training", "https://github.com/everyleaf/el-training"
+    = link_to "https://github.com/koalamask/el-training", "https://github.com/koalamask/el-training"
   
   h4 ・使用したカリキュラム
   p 
@@ -19,9 +19,9 @@
   p 
     | Ruby on Railsを一から学び直す目的で取り組みました。
     br
-    | 本格的にプログラミングを始めた一年ほど前、初めての開発言語に選んだのがRubyでしたが、その頃はログイン周りや検索機能などはgemに頼りきりで内部の実装をよく理解できていませんでした。
+    | 本格的にプログラミングを始めた一年ほど前、初めての開発言語に選んだのがRubyでしたが、その頃はログイン周りや検索機能などgemに頼ったために仕組みをよく理解しないまま実装していた箇所がありました。
     br
-    | また、現在実務で開発に携われない状況が続いており、開発力の衰えを危惧しています。
+    | また、現職ではソフトウェア開発に携われない状況が続いており、開発力の衰えを危惧しています。
     br
     | これらの理由から、もう一度基礎から学び直し再スタートを切るべく取り組みました。
 
@@ -29,15 +29,17 @@
   h4 ・バージョン情報
   p Ruby 2.5.3, Ruby on Rails 5.2.2, Bundler 1.17.3, PostgreSQL 11.1
 
-  h4 ・これから実装したい点
+  h4 ・これから実装したい、改善したい点
+  p 
+    | ※ GitHubリポジトリ内 issueにて管理中: 
+    = link_to "https://github.com/koalamask/el-training/issues", "https://github.com/koalamask/el-training/issues"
   p 
     | ・機能面
     br
-    | ラベル添付機能（一つのタスクに複数添付することができていない）
+    | ラベル添付機能
     br
-    | UIの改善：配色など
+    | UIの改善：検索結果を表示する際「'（検索条件）' での検索結果：○件」という風に表示したい
   p 
-    br
     |・コード面
     br
     | CircleCIの導入
@@ -45,6 +47,12 @@
     | テストコードのリファクタリング
     br
     | 反復記述箇所の共通化（検索機能、tasks_controller.rbのindexアクションなど）
+  p 
+    |・オプション要件（V2.0）として
+    br
+    = link_to "https://github.com/koalamask/el-training/projects/2", "https://github.com/koalamask/el-training/projects/2"
+      
+
 
   hr
   h4 ・独自改良版
@@ -52,4 +60,6 @@
     | 本アプリケーションはRuby on Railsのみで構成されていますが、Vue.jsと組み合わせ、より使用感やデザイン性を向上させた発展形も作成してみました。
     br
     | よろしければ下記リンクからぜひご覧ください。
-  p = link_to "https://github.com/everyleaf/el-training", "https://github.com/everyleaf/el-training"
+    br
+    | ※アクセスのタイミングによりサーバーが一時停止していることがあります。この場合復帰のため画面表示まで時間がかかることがあります。ご了承ください
+  p = link_to "https://el-training-with-vuejs.herokuapp.com/", "https://el-training-with-vuejs.herokuapp.com/"
