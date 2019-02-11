@@ -37,15 +37,27 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
-        models:
-          task: タスク
-        attributes:
-          task:
-            id: ID
-            name: 名称
-            desciption: 詳しい説明
-            created_at: 登録日時
-            updated_at: 更新日時
+    models:
+      task: タスク
+      user: ユーザー
+    attributes:
+      task:
+        id: ID
+        name: 名称
+        description: 詳しい説明
+        deadline: 期限
+        priority: 優先度
+        status: 進捗
+        created_at: 登録日時
+        updated_at: 更新日時
+      user:
+        id: ID
+        name: 名前
+        email: メールアドレス
+        admin: 管理者権限
+        count: タスク数
+        created_at: 登録日時
+        updated_at: 更新日時
   date:
     abbr_day_names:
     - 日
@@ -184,6 +196,13 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+    label:
+      id: ID
+      name: 名称
+      description: 詳しい説明
+      deadline: 期限
+      priority: 優先度
+      status: 進捗
   number:
     currency:
       format:
