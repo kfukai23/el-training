@@ -18,5 +18,5 @@
     = f.select :status, options_for_select(["未着手", "着手中", "完了"]), class: 'form-control', id: 'task_status'
   .form-group
     = f.label :deadline
-    = f.text_field :deadline, class: 'form-control', id: 'task_deadline'
+    = f.text_field :deadline, class: 'form-control', id: 'task_deadline', placeholder:'YYYY-MM-DD'
   = f.submit nil, class: 'btn btn-primary'
