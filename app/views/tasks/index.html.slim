@@ -3,13 +3,16 @@ h1 タスク一覧
 .mb-3
   = form_tag(tasks_path, :method => 'get') do
     .form-row
-      .form-group.col-md-6
+      .form-group.col-md-4
         = label_tag :name
-        = text_field_tag :name, [], class: 'form-control'   
-      .form-group.col-md-3
+        = text_field_tag :name, [], class: 'form-control'
+      .form-group.col-md-4
+        = label_tag :description
+        = text_field_tag :description, [], class: 'form-control'   
+      .form-group.col-md-2
         = label_tag :status
         = select_tag :status, options_for_select([["指定しない", nil], ["未着手"], ["着手中"], ["完了"]]), class: 'form-control'
-      .form-group.col-md-3
+      .form-group.col-md-2
         = label_tag :priority
         = select_tag :priority, options_for_select([["指定しない", nil], ["低", 0], ["中", 1], ["高", 2]]), class: 'form-control'
     = submit_tag 'Search', :name => nil, class: 'btn btn-light'
