@@ -15,12 +15,20 @@ class Task < ApplicationRecord
     enum priority: { 低: 0, 中: 1, 高: 2 }
     # enum status:   { 未着手: 0, 着手中: 1, 完了済: 2 }
 
-    #FIXME: 共通部分を抽象化する
+    # FIXME:リファクタリングする
     def self.search_by_name(name)
         if name == "" || name.nil?
             all
         else
             where("name like '%" + name+ "%'")
+        end
+    end
+
+    def self.search_by_description(description)
+        if description == "" || description.nil?
+            all
+        else
+            where("description like '%" + description+ "%'")
         end
     end
 
