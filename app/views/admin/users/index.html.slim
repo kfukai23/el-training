@@ -6,20 +6,23 @@ h3.pt-4 ユーザー一覧
 /   = paginate @users
 /   = page_entries_info @users
 
-
 .mb-3
 table.table.table-hover
 	thead.thead-default
 		tr
-			th 名前
-			th Email
-			th 管理者権限
-			th タスク数
-			th 作成日時
-			th 更新日時
+			th= User.human_attribute_name(:id)
+			th= User.human_attribute_name(:name)
+			th= User.human_attribute_name(:email)
+			th= User.human_attribute_name(:admin)
+			th= User.human_attribute_name(:count)
+			th= User.human_attribute_name(:created_at)
+			th= User.human_attribute_name(:updated_at)
+			th
+			th
 	tbody
 		- @users.each do |user|
 			tr
+				td= user.id
 				td= link_to user.name, [:admin, user]
 				td= user.email
 				td= user.admin? ? 'あり' : 'なし'
