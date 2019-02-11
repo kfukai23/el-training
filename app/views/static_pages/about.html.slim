@@ -27,7 +27,14 @@
 
 
   h4 ・バージョン情報
-  p Ruby 2.5.3, Ruby on Rails 5.2.2, Bundler 1.17.3, PostgreSQL 11.1
+  p 
+    | Ruby 2.5.3 
+    br
+    | Ruby on Rails 5.2.2 
+    br 
+    | Bundler 1.17.3
+    br
+    | PostgreSQL 11.1
 
   h4 ・これから実装したい点
   p 
@@ -44,12 +51,19 @@
     br
     | テストコードのリファクタリング
     br
-    | 反復記述箇所の共通化（検索機能、tasks_controller.rbのindexアクションなど）
+    | リファクタリング：反復記述箇所の共通化（検索機能、tasks_controller.rbのindexアクションなど）
+  p 
+    |・オプション要件（V2.0として）
+    br
+    = link_to "https://github.com/koalamask/el-training/projects/2", "https://github.com/koalamask/el-training/projects/2"
 
   hr
+
   h4 ・独自改良版
   p
     | 本アプリケーションはRuby on Railsのみで構成されていますが、Vue.jsと組み合わせ、より使用感やデザイン性を向上させた発展形も作成してみました。
     br
     | よろしければ下記リンクからぜひご覧ください。
-  p = link_to "https://github.com/everyleaf/el-training", "https://github.com/everyleaf/el-training"
+    br
+    | ※アクセスのタイミングによりサーバーが一時停止していることがあります。この場合復帰のため画面表示まで時間がかかることがあります。ご了承ください。
+  p = link_to "https://el-training-with-vuejs.herokuapp.com/", "https://el-training-with-vuejs.herokuapp.com/"

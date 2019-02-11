@@ -1,5 +1,18 @@
 @import "bootstrap";
 
-.about > h4 {
-  padding-top: 20px;
+a.nav-link {
+  color: rgba(0, 0, 0, 0.5)
 }
+
+.about > h4 {
+	padding-top: 20px;
+}
+.parent{
+	position: relative;
+	height: 70px;
+}
+.children{
+	position: absolute;
+	bottom: 0;
+}
+
