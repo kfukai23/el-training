@@ -40,6 +40,7 @@ ja:
     models:
       task: タスク
       user: ユーザー
+      label: ラベル
     attributes:
       task:
         id: ID
@@ -58,6 +59,8 @@ ja:
         count: タスク数
         created_at: 登録日時
         updated_at: 更新日時
+      label:
+        name: ラベル
   date:
     abbr_day_names:
     - 日
