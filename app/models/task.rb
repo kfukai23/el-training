@@ -44,7 +44,6 @@ class Task < ApplicationRecord
 
     def save_labels(labels, current_user)
         current_labels = self.labels.pluck(:name) unless self.labels.nil?
-        binding.pry
         old_labels = current_labels - labels
         new_labels = labels - current_labels
     
