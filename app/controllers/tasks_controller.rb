@@ -11,17 +11,19 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.new
   end
 
   def edit
     @task = current_user.tasks.find(params[:id])
   end
-
+  
   def create
-    @task = current_user.tasks.new(task_params)
-
+    @task = current_user.tasks.build(task_params)
+    label_list = params[:label].split(",")
+      
     if @task.save
+      @task.save_labels(label_list)
       redirect_to tasks_path, notice: "タスク「#{@task.name}」を登録しました。"
     else
       render :new
