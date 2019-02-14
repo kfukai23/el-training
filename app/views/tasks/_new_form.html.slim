@@ -22,6 +22,6 @@
       = f.text_field :deadline, class: 'form-control', id: 'task_deadline', placeholder:'YYYY-MM-DD'
   .form-group
     = f.label "tags"
-    = text_field_tag :label
+    = text_field_tag :label,[],  'data-role': 'tagsinput'
 
   = f.submit nil, class: 'btn btn-primary'
