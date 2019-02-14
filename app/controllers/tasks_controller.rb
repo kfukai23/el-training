@@ -16,6 +16,7 @@ class TasksController < ApplicationController
 
   def edit
     @task = current_user.tasks.find(params[:id])
+    @labels = @task.labels.pluck(:name).join(",")
   end
   
   def create
@@ -32,8 +33,10 @@ class TasksController < ApplicationController
 
   def update
     @task = current_user.tasks.find(params[:id])
-
+    
+    label_list = params[:label].split(",")
     if @task.update(task_params)
+      @task.save_labels(label_list)
       redirect_to tasks_path, notice: "タスク「#{@task.name}」を更新しました。"
     else
       render :edit

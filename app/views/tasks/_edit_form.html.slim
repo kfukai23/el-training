@@ -1,0 +1,27 @@
+- if task.errors.present?
+  ul#error_explanation.alert-warning
+    - task.errors.full_messages.each do |message|
+      li= message
+
+= form_with model: task, local: true do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control', id: 'task_name'
+  .form-group
+    = f.label :description
+    = f.text_area :description, rows: 5, class: 'form-control', id: 'task_description'
+  .form-row
+    .form-group.col-md-4
+      = f.label :priority
+      = f.select :priority, Task.priorities.keys, {}, class: 'form-control', id: 'task_priority'
+    .form-group.col-md-4
+      = f.label :status
+      = f.select :status, options_for_select(["未着手", "着手中", "完了"]), {}, class: 'form-control', id: 'task_status'
+    .form-group.col-md-4
+      = f.label :deadline
+      = f.text_field :deadline, class: 'form-control', id: 'task_deadline', placeholder:'YYYY-MM-DD'
+  .form-group
+    = f.label "tags"
+    = text_field_tag :label, labels
+
+  = f.submit nil, class: 'btn btn-primary'
