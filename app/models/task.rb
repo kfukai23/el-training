@@ -4,6 +4,8 @@ class Task < ApplicationRecord
     validates :status, presence: true
     validate :deadline_is_today_or_later
 
+    has_many :label_tasks, dependent: :destroy
+    has_many :labels, through: :label_tasks
     belongs_to :user
 
     def deadline_is_today_or_later
@@ -39,4 +41,21 @@ class Task < ApplicationRecord
             where("#{column} = ?", params)
         end
     end
+
+    def save_labels(labels, current_user)
+        current_labels = self.labels.pluck(:name) unless self.labels.nil?
+        binding.pry
+        old_labels = current_labels - labels
+        new_labels = labels - current_labels
+    
+        old_labels.each do |old_name|
+          self.labels.delete Label.find_by(name:old_name)
+          current_user.labels.find_by(name:old_name).delete if current_user != nil && current_user.labels.find_by(name:old_name).label_tasks.blank?
+        end
+    
+        new_labels.each do |new_name|
+          label_task = current_user.labels.find_or_create_by(name:new_name)
+          self.labels << label_task
+        end
+      end
 end

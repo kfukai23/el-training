@@ -35,6 +35,7 @@ table.table.table-hover
       th= sortable "deadline", "期限" 
       th= sortable "name", "名称"
       th= sortable "priority", "優先度"
+      th= Label.human_attribute_name(:name)
       th= Task.human_attribute_name(:created_at)
       th 
       th 
@@ -45,6 +46,12 @@ table.table.table-hover
         td.deadline= task.deadline
         td.name= link_to task.name, task_path(task)
         td= task.priority
+        td
+          - if task.labels.exists?
+            - task.labels.each do |label|
+              span.badge.badge-secondary.mr-1= label.name
+          - else
+              span なし
         td= task.created_at.strftime('%Y-%m-%d %H:%M')
         td= link_to '編集', edit_task_path(task), class: 'btn btn-primary mr-3'
         td= link_to '削除', task_path(task), method: :delete, data: { confirm: "タスク「#{task.name}」を削除します。よろしいですか？" }, class: 'btn btn-warning mr-3'
