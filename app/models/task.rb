@@ -42,6 +42,16 @@ class Task < ApplicationRecord
         end
     end
 
+    def self.search_by_label(label, current_user)
+        if label == "" || label.nil?
+            all
+        else
+            labels = current_user.labels.where(name: label).ids
+            task_ids = LabelTask.where(label_id: labels).map {|t| p t.task_id }
+            Task.where(id: task_ids)
+        end
+    end
+
     def save_labels(labels, current_user)
         current_labels = self.labels.pluck(:name) unless self.labels.nil?
         old_labels = current_labels - labels
