@@ -3,7 +3,8 @@ class TasksController < ApplicationController
 
   def index
     # FIXME:リファクタリングする
-    @tasks = current_user.tasks.order(sort_column + ' ' + sort_direction).search_by_name(params[:name]).search_by_description(params[:description]).search('status', params[:status]).search('priority', params[:priority]).search_by_label(params[:label], current_user).page(params[:page]).includes(:user, :labels)
+    # @tasks = current_user.tasks.order(sort_column + ' ' + sort_direction).search_by_name(params[:name]).search_by_description(params[:description]).search('status', params[:status]).search('priority', params[:priority]).search_by_label(params[:label], current_user).page(params[:page]).includes(:user, :labels)
+    @tasks = current_user.tasks.order(sort_column + ' ' + sort_direction).search_by_name(params[:name]).search_by_description(params[:description]).search('status', params[:status]).search_by_label(params[:label], current_user).page(params[:page]).includes(:user, :labels)
   end
 
   def show

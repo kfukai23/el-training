@@ -5,15 +5,18 @@ h3.pt-4.pt-4 タスク検索
       .form-group.col-md-3
         = form.label :name
         = form.text_field :name, class: 'form-control', placeholder: 'タスク名（部分一致検索）'
-      .form-group.col-md-4
+      .form-group.col-md-3
         = form.label :description
         = form.text_field :description, class: 'form-control', placeholder: 'タスク詳細（部分一致検索）'
       .form-group.col-md-2
+        = form.label 'ラベル名'
+        = form.text_field :label, class: 'form-control', placeholder: 'ラベル名'
+      .form-group.col-md-2
         = form.label :status
         = form.select :status, [["指定しない", nil], ["未着手"], ["着手中"], ["完了"]], {}, class: 'form-control'
-      .form-group.col-md-2
-        = form.label :priority
-        = form.select :priority, options_for_select([["指定しない", nil], ["低", 0], ["中", 1], ["高", 2]]), {}, class: 'form-control'
+      / .form-group.col-md-2
+      /   = form.label :priority
+      /   = form.select :priority, options_for_select([["指定しない", nil], ["低", 0], ["中", 1], ["高", 2]]), {}, class: 'form-control'
       .form-group.col-md-1.parent
         = form.submit 'Search', class: 'children col-md-12 btn btn-secondary'
 
