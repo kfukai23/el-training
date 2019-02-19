@@ -2,7 +2,9 @@ class TasksController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @tasks = current_user.tasks.order(sort_column + ' ' + sort_direction).search_by_name(params[:name]).search('status', params[:status]).search('priority', params[:priority]).page(params[:page]).includes(:user)
+    # FIXME:リファクタリングする
+    # @tasks = current_user.tasks.order(sort_column + ' ' + sort_direction).search_by_name(params[:name]).search_by_description(params[:description]).search('status', params[:status]).search('priority', params[:priority]).search_by_label(params[:label], current_user).page(params[:page]).includes(:user, :labels)
+    @tasks = current_user.tasks.order(sort_column + ' ' + sort_direction).search_by_name(params[:name]).search_by_description(params[:description]).search('status', params[:status]).search_by_label(params[:label], current_user).page(params[:page]).includes(:user, :labels)
   end
 
   def show
@@ -10,17 +12,20 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.new
   end
 
   def edit
     @task = current_user.tasks.find(params[:id])
+    @labels = @task.labels.pluck(:name).join(",")
   end
-
+  
   def create
-    @task = current_user.tasks.new(task_params)
-
+    @task = current_user.tasks.build(task_params)
+    label_list = params[:label].split(",")
+      
     if @task.save
+      @task.save_labels(label_list, current_user)
       redirect_to tasks_path, notice: "タスク「#{@task.name}」を登録しました。"
     else
       render :new
@@ -29,8 +34,10 @@ class TasksController < ApplicationController
 
   def update
     @task = current_user.tasks.find(params[:id])
-
+    
+    label_list = params[:label].split(",")
     if @task.update(task_params)
+      @task.save_labels(label_list, current_user)
       redirect_to tasks_path, notice: "タスク「#{@task.name}」を更新しました。"
     else
       render :edit
