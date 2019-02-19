@@ -16,6 +16,11 @@ table.table.table-hover
       th = Task.human_attribute_name(:description)
       td = simple_format(h(@task.description), {}, sanitize: false, wrapper_tag: 'div')
     tr 
+      th = 'ラベル'
+      td 
+        - @task.labels.each do |label|
+          span.badge.badge-secondary.mr-1= label.name
+    tr 
       th = Task.human_attribute_name(:updated_at)
       td = @task.updated_at.strftime('%Y-%m-%d %H:%M:%S')
     tr 
