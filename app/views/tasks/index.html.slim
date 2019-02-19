@@ -18,18 +18,17 @@ h3.pt-4.pt-4 タスク検索
       /   = form.label :priority
       /   = form.select :priority, options_for_select([["指定しない", nil], ["低", 0], ["中", 1], ["高", 2]]), {}, class: 'form-control'
       .form-group.col-md-1.parent
-        = form.submit 'Search', class: 'children col-md-12 btn btn-secondary'
+        = form.submit 'Search', class: 'children col-md-12 btn btn-outline-secondary'
 
-= link_to '新規登録', new_task_path, class: 'btn btn-primary'
-
-h3.pt-4.pt-4 タスク一覧
+.mb-3
+  h3.pt-4 タスク一覧
+  span.float-right= link_to 'タスクを新規登録する', new_task_path, class: 'btn btn-primary'
 / FIXME: 検索条件を表示するヘルパー 制作中
 / h3.pt-4.pt-4  = search_condition 
 
 .mb-3
   = paginate @tasks
   = page_entries_info @tasks
-
 .mb-3
 table.table.table-hover
   thead.thead-default
@@ -56,7 +55,7 @@ table.table.table-hover
           - else
               span なし
         td= task.created_at.strftime('%Y-%m-%d %H:%M')
-        td= link_to '編集', edit_task_path(task), class: 'btn btn-primary mr-3'
-        td= link_to '削除', task_path(task), method: :delete, data: { confirm: "タスク「#{task.name}」を削除します。よろしいですか？" }, class: 'btn btn-warning mr-3'
+        td= link_to '編集', edit_task_path(task), class: 'btn btn-outline-primary'
+        td= link_to '削除', task_path(task), method: :delete, data: { confirm: "タスク「#{task.name}」を削除します。よろしいですか？" }, class: 'btn btn-outline-danger mr-3'
 
 
