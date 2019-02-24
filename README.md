@@ -2,7 +2,7 @@
 [![Ruby version](https://img.shields.io/badge/Ruby-2.5.3-red.svg)]()
 [![RoR version](https://img.shields.io/badge/Ruby%20on%20Rails-5.2.2-red.svg)]()
 [![License MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)]()
-[![CircleCI](https://circleci.com/gh/kaitofu/el-training.svg?style=svg)](https://circleci.com/gh/kaitofu/el-training)
+[![CircleCI](https://img.shields.io/circleci/project/github/kaitofu/el-training.svg)]()
 
 このアプリケーションは、RubyおよびRuby On Railsを用いた基本的なWebアプリケーション作成の学習過程において制作されたものです。
 
