@@ -10,7 +10,7 @@ jobs:
       - image: circleci/ruby:2.5.3-node-browsers
         environment:
         - PG_HOST: localhost
-        - PG_USER: root
+        - PG_USER: circleci
         - RAILS_ENV: test
         - RACK_ENV: test
 
@@ -23,7 +23,7 @@ jobs:
       # which includes a few enhancements and modifications. It is possible to use either image.
       - image: circleci/postgres:10.7-alpine-postgis
         environment:
-        - POSTGRES_USER: root
+        - POSTGRES_USER: circleci
         - POSTGRES_DB: el-training_test
 
     working_directory: ~/repo
@@ -55,15 +55,15 @@ jobs:
             bundle exec rake db:create db:schema:load --trace
             bundle exec rake db:migrate
           environment:
-            DATABASE_URL: "postgres://root@localhost:5432/el-training_test"
+            DATABASE_URL: "postgres://circleci@localhost:5432/el-training_test"
 
       # run tests!
       - run:
           name: run tests
           command: |
             mkdir /tmp/test-results
-            TEST_FILES="$(root tests glob "spec/**/*_spec.rb" | \
-              root tests split --split-by=timings)"
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
 
             bundle exec rspec \
               --format progress \
