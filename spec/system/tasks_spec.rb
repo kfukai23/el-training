@@ -3,15 +3,16 @@ require 'rails_helper'
 # FIXME: 必ず共通化する
 
 describe 'タスク管理機能', type: :system do
-    describe '一覧表示機能' do    
+    describe '一覧表示機能' do
+        let(:user_a) { FactoryBot.create(:user, name: 'ユーザーA', email: 'a@example.com') }    
+        
         before do
             admin = FactoryBot.create(:user, admin: true)
-            @user_a = FactoryBot.create(:user, name: 'ユーザーA', email: 'a@example.com')
         end
         
         context 'ユーザAがログインしているとき' do
             before do
-                FactoryBot.create(:task, name: "最初のタスク", user: @user_a)
+                FactoryBot.create(:task, name: "最初のタスク", user: user_a)
                 visit login_path
                 fill_in 'メールアドレス',  with: 'a@example.com'
                     fill_in 'パスワード', with: 'password'
@@ -25,9 +26,9 @@ describe 'タスク管理機能', type: :system do
         
         context 'ユーザAがログインしているとき' do
             before do
-                FactoryBot.create(:task, name: "1番目", user: @user_a, created_at: Time.current + 2.days )
-                FactoryBot.create(:task, name: "2番目", user: @user_a, created_at: Time.current + 1.days )
-                FactoryBot.create(:task, name: "3番目", user: @user_a, created_at: Time.current)
+                FactoryBot.create(:task, name: "1番目", user: user_a, created_at: Time.current + 2.days )
+                FactoryBot.create(:task, name: "2番目", user: user_a, created_at: Time.current + 1.days )
+                FactoryBot.create(:task, name: "3番目", user: user_a, created_at: Time.current)
 
                 visit login_path
                 fill_in 'メールアドレス',  with: 'a@example.com'
@@ -45,9 +46,9 @@ describe 'タスク管理機能', type: :system do
 
         context 'ユーザAがログインしているとき' do
             before do
-                FactoryBot.create(:task, name: "1番目", user: @user_a, deadline: Date.today )
-                FactoryBot.create(:task, name: "2番目", user: @user_a, deadline: Date.today + 1.days )
-                FactoryBot.create(:task, name: "3番目", user: @user_a, deadline: Date.today + 2.days )
+                FactoryBot.create(:task, name: "1番目", user: user_a, deadline: Date.today )
+                FactoryBot.create(:task, name: "2番目", user: user_a, deadline: Date.today + 1.days )
+                FactoryBot.create(:task, name: "3番目", user: user_a, deadline: Date.today + 2.days )
 
                 visit login_path
                 fill_in 'メールアドレス',  with: 'a@example.com'
@@ -71,9 +72,9 @@ describe 'タスク管理機能', type: :system do
         
         context 'ユーザAがログインしているとき' do
             before do
-                FactoryBot.create(:task, name: "1番目", user: @user_a, priority: 2)
-                FactoryBot.create(:task, name: "2番目", user: @user_a, priority: 1)
-                FactoryBot.create(:task, name: "3番目", user: @user_a, priority: 0)
+                FactoryBot.create(:task, name: "1番目", user: user_a, priority: 2)
+                FactoryBot.create(:task, name: "2番目", user: user_a, priority: 1)
+                FactoryBot.create(:task, name: "3番目", user: user_a, priority: 0)
 
                 visit login_path
                 fill_in 'メールアドレス',  with: 'a@example.com'
@@ -101,9 +102,9 @@ describe 'タスク管理機能', type: :system do
         
         context 'ユーザAがログインしているとき' do
             before do
-                FactoryBot.create(:task, name: "first", user: @user_a, priority: 2, status: "未着手")
-                FactoryBot.create(:task, name: "second", user: @user_a, priority: 1, status: "着手中")
-                FactoryBot.create(:task, name: "third", user: @user_a, priority: 0, status: "完了")
+                FactoryBot.create(:task, name: "first", user: user_a, priority: 2, status: "未着手")
+                FactoryBot.create(:task, name: "second", user: user_a, priority: 1, status: "着手中")
+                FactoryBot.create(:task, name: "third", user: user_a, priority: 0, status: "完了")
                 visit login_path
                 fill_in 'メールアドレス',  with: 'a@example.com'
                 fill_in 'パスワード', with: 'password'
@@ -120,9 +121,9 @@ describe 'タスク管理機能', type: :system do
         
         context 'ユーザAがログインしているとき' do
             before do
-                FactoryBot.create(:task, name: "first", user: @user_a, priority: 2, status: "未着手")
-                FactoryBot.create(:task, name: "second", user: @user_a, priority: 1, status: "着手中")
-                FactoryBot.create(:task, name: "third", user: @user_a, priority: 0, status: "完了")
+                FactoryBot.create(:task, name: "first", user: user_a, priority: 2, status: "未着手")
+                FactoryBot.create(:task, name: "second", user: user_a, priority: 1, status: "着手中")
+                FactoryBot.create(:task, name: "third", user: user_a, priority: 0, status: "完了")
                 visit login_path
                 fill_in 'メールアドレス',  with: 'a@example.com'
                 fill_in 'パスワード', with: 'password'
@@ -140,10 +141,10 @@ describe 'タスク管理機能', type: :system do
     # # describe '一覧表示機能' do    
     # #     before do
     # #         admin = FactoryBot.create(:user, admin: true)
-    # #         @user_a = FactoryBot.create(:user, name: 'ユーザーA', email: 'a@example.com')
-    # #         FactoryBot.create(:task, name: "first", user: @user_a, priority: 2, status: "未着手")
-    # #         FactoryBot.create(:task, name: "second", user: @user_a, priority: 1, status: "着手中")
-    # #         FactoryBot.create(:task, name: "third", user: @user_a, priority: 0, status: "完了")
+    # #         user_a = FactoryBot.create(:user, name: 'ユーザーA', email: 'a@example.com')
+    # #         FactoryBot.create(:task, name: "first", user: user_a, priority: 2, status: "未着手")
+    # #         FactoryBot.create(:task, name: "second", user: user_a, priority: 1, status: "着手中")
+    # #         FactoryBot.create(:task, name: "third", user: user_a, priority: 0, status: "完了")
     # #     end
     
     # #     context 'ユーザAがログインしているとき' do
