@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-Rspec.describe Label, type: :model do
+RSpec.describe Label, type: :model do
   describe 'モデルテスト' do
     context '' do
       it 'ラベル名が10文字なら有効であること' do

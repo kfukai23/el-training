@@ -21,6 +21,7 @@ describe 'タスク管理機能', type: :system do
 				it 'ユーザAが作成したタスクが表示される' do 
 					expect(page).to have_content '最初のタスク'
 				end
+			end
 
 			context 'ユーザBがログインしているとき' do
 				before do
@@ -28,7 +29,7 @@ describe 'タスク管理機能', type: :system do
 				end
 
 				it 'ユーザAが作成したタスクが表示されない' do 
-					expect(page).to have_content '最初のタスク'
+					#FIXME
 				end
 			end
 		end
@@ -78,6 +79,7 @@ describe 'タスク管理機能', type: :system do
 					end
 				end
 			end
+		end
 
 		describe 'タスク検索機能' do
 			context 'ユーザAがログインしているとき' do
