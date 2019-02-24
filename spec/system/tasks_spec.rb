@@ -149,15 +149,35 @@ describe 'タスク管理機能', type: :system do
 		end
 
 		describe 'タスク新規登録機能' do
+			let(:login_user) { user_a }
+			
+			before do
+				visit login_path
+				fill_in 'メールアドレス',  with: login_user.email
+				fill_in 'パスワード', with: login_user.password
+				click_button 'ログインする'
+				click_link 'タスクを新規登録する'
+
+				fill_in 'task_description', with: '詳しい説明 body'
+				select '低', from: '優先度'
+				select '未着手', from: '進捗'
+				fill_in 'task_deadline', with: Date.today
+				# fill_in 'Tags', with: 'Tag'
+		  end
+
 			context '新規作成画面で名前を入力したとき' do
 				it '正常に登録される' do
-					#FIXME
+					fill_in 'task_name', with: '正常'
+					click_button '登録する'
+
+					expect(page).to have_content "正常"
 				end
 			end
 			
 			context '新規作成画面で名前を入力しなかったとき' do
 				it '登録に失敗する' do
-					#FIXME
+					click_button '登録する'
+					expect(page).to have_content "名称を入力してください"
 				end
 			end
 		end
