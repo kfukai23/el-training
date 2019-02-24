@@ -67,6 +67,10 @@ RSpec.describe Task, type: :model do
         expect(task).not_to be_valid
       end
 
+      it '名前が30文字ならば有効であること' do
+        #FIXME
+      end
+
       it '期限が昨日以前だと無効であること' do
         user = User.create(
           name: 'ユーザA',
@@ -81,6 +85,10 @@ RSpec.describe Task, type: :model do
           deadline: Date.today - 1.days,
         )
         expect(task).not_to be_valid
+      end
+
+      it '期限が今日なら有効であること' do
+        #FIXME
       end
     end
   end
