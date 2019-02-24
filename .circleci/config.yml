@@ -10,7 +10,7 @@ jobs:
       - image: circleci/ruby:2.5.3-node-browsers
         environment:
         - PG_HOST: localhost
-        - PG_USER: ubuntu
+        - PG_USER: root
         - RAILS_ENV: test
         - RACK_ENV: test
 
@@ -23,7 +23,7 @@ jobs:
       # which includes a few enhancements and modifications. It is possible to use either image.
       - image: postgres:10.7
         environment:
-        - POSTGRES_USER: ubuntu
+        - POSTGRES_USER: root
         - POSTGRES_DB: el-training_test
 
     working_directory: ~/repo
