@@ -10,7 +10,7 @@ jobs:
       - image: circleci/ruby:2.5.3-node-browsers
         environment:
         - PG_HOST: localhost
-        - PG_USER: circleci
+        - PG_USER: root
         - RAILS_ENV: test
         - RACK_ENV: test
 
@@ -21,7 +21,7 @@ jobs:
 
       # The following example uses the official postgres 9.6 image, you may also use circleci/postgres:9.6 
       # which includes a few enhancements and modifications. It is possible to use either image.
-      - image: postgres:10.7
+      - image: circleci/postgres:10.7-alpine-postgis
         environment:
         - POSTGRES_USER: root
         - POSTGRES_DB: el-training_test
@@ -55,7 +55,7 @@ jobs:
             bundle exec rake db:create db:schema:load --trace
             bundle exec rake db:migrate
           environment:
-            DATABASE_URL: "postgres://circleci@localhost:5432/el-training_test"
+            DATABASE_URL: "postgres://root@localhost:5432/el-training_test"
 
       # run tests!
       - run:
