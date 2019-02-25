@@ -162,7 +162,11 @@ describe 'タスク管理機能', type: :system do
 				select '低', from: '優先度'
 				select '未着手', from: '進捗'
 				fill_in 'task_deadline', with: Date.today
-				# fill_in 'Tags', with: 'Tag'
+
+				within '.bootstrap-tagsinput' do
+					find('#tagsinputform').set('Tag1')
+					find('#tagsinputform').set('Tag2')
+				end
 		  end
 
 			context '新規作成画面で名前を入力したとき' do
@@ -183,16 +187,22 @@ describe 'タスク管理機能', type: :system do
 		end
 
 		describe 'タスク編集機能' do
+			let(:login_user) { user_a }
+			let!(:task_a) { FactoryBot.create(:task, name: "編集前のタスク", user: user_a) }
+
 			before do
-					#編集対象のタスクを作成
-					#ログイン
-					#編集ボタン押下
+				visit login_path
+				fill_in 'メールアドレス',  with: login_user.email
+				fill_in 'パスワード', with: login_user.password
+				click_button 'ログインする'
+				visit edit_task_path(task_a)
 			end
 
 			it 'タグが追加できること' do
-					#タグを入力
-					#更新ボタン押下
-					#そのタグを含むタスクが登録されている
+				#タグを持つタスクの生成方法が不明なので一旦名称を更新できるか検証する
+				fill_in '名称', with: '編集後のタスク'
+				click_button '更新する'
+				expect(page).to have_selector '.alert-success', text: '編集後のタスク'
 			end 
 
 			it 'タグが削除できること' do
