@@ -33,14 +33,18 @@ class Admin::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to admin_user_path(@user), notice: "ユーザー#{@user.name}を更新しました。"
     else
-      render :new
+      render :edit
     end
   end
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-    redirect_to admin_users_path, notice: "ユーザー「#{@user.name}」を削除しました。"
+
+    if @user.destroy
+      redirect_to admin_users_path, notice: "ユーザー「#{@user.name}」を削除しました。"
+    else
+      render :show
+    end
   end
 
   private
