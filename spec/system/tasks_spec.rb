@@ -198,17 +198,30 @@ describe 'タスク管理機能', type: :system do
 				visit edit_task_path(task_a)
 			end
 
-			it 'タグが追加できること' do
-				#タグを持つタスクの生成方法が不明なので一旦名称を更新できるか検証する
+			it 'ラベルが追加できること' do
+				#ラベルを持つタスクの生成方法が不明なので一旦名称を更新できるか検証する
 				fill_in '名称', with: '編集後のタスク'
+				within '.bootstrap-tagsinput' do
+					find('#tagsinputform').set('Tag1')
+				end
 				click_button '更新する'
 				expect(page).to have_selector '.alert-success', text: '編集後のタスク'
+				expect(page).to have_content 'Tag1'
 			end 
 
-			it 'タグが削除できること' do
-					#タグを入力
-					#更新ボタン押下
-					#そのタグを含むタスクが一覧に存在しない
+			it 'ラベルが削除できること' do
+				fill_in '名称', with: '編集後のタスク'
+				within '.bootstrap-tagsinput' do
+					find('#tagsinputform').set('Tag1')
+				end
+				click_button '更新する'
+				visit edit_task_path(task_a)
+				#そのラベルを含むタスクが一覧に存在しない
+				within '.label-info' do
+					find('#tag-delete').click
+				end
+				click_button '更新する'
+				expect(page).to have_no_content 'Tag1'
 			end 
 
 			it '削除したタスクのラベルのうちどのタスクにも紐付かなくなるものは削除されていること'do
