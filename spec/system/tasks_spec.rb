@@ -199,7 +199,6 @@ describe 'タスク管理機能', type: :system do
 			end
 
 			it 'ラベルが追加できること' do
-				#ラベルを持つタスクの生成方法が不明なので一旦名称を更新できるか検証する
 				fill_in '名称', with: '編集後のタスク'
 				within '.bootstrap-tagsinput' do
 					find('#tagsinputform').set('Tag1')
@@ -216,16 +215,13 @@ describe 'タスク管理機能', type: :system do
 				end
 				click_button '更新する'
 				visit edit_task_path(task_a)
-				#そのラベルを含むタスクが一覧に存在しない
 				within '.label-info' do
 					find('#tag-delete').click
 				end
 				click_button '更新する'
 				expect(page).to have_no_content 'Tag1'
 			end 
-			it '削除したタスクのラベルのうちどのタスクにも紐付かなくなるものは削除されていること'do
-			#FIXME
-			end
+
 		end
 
 		describe 'タスク削除機能' do
@@ -244,9 +240,6 @@ describe 'タスク管理機能', type: :system do
 				within 'table' do
 					expect(page).to have_no_content '削除前のタスク'
 				end
-				
-				it '削除したタスクのラベルのうちどのタスクにも紐付かなくなるものは削除されていること'do
-						#FIXME
 			end
 		end
 	end
