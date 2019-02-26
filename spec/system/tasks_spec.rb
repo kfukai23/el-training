@@ -198,37 +198,48 @@ describe 'タスク管理機能', type: :system do
 				visit edit_task_path(task_a)
 			end
 
-			it 'タグが追加できること' do
-				#タグを持つタスクの生成方法が不明なので一旦名称を更新できるか検証する
+			it 'ラベルが追加できること' do
 				fill_in '名称', with: '編集後のタスク'
+				within '.bootstrap-tagsinput' do
+					find('#tagsinputform').set('Tag1')
+				end
 				click_button '更新する'
 				expect(page).to have_selector '.alert-success', text: '編集後のタスク'
+				expect(page).to have_content 'Tag1'
 			end 
 
-			it 'タグが削除できること' do
-					#タグを入力
-					#更新ボタン押下
-					#そのタグを含むタスクが一覧に存在しない
+			it 'ラベルが削除できること' do
+				fill_in '名称', with: '編集後のタスク'
+				within '.bootstrap-tagsinput' do
+					find('#tagsinputform').set('Tag1')
+				end
+				click_button '更新する'
+				visit edit_task_path(task_a)
+				within '.label-info' do
+					find('#tag-delete').click
+				end
+				click_button '更新する'
+				expect(page).to have_no_content 'Tag1'
 			end 
 
-			it '削除したタスクのラベルのうちどのタスクにも紐付かなくなるものは削除されていること'do
-			#FIXME
-			end
 		end
 
 		describe 'タスク削除機能' do
+			let(:login_user) { user_a }
+			let!(:task_a) { FactoryBot.create(:task, name: "削除前のタスク", user: user_a) }
+
 			before do
-					#削除対象のタスクを作成
-					#ログイン
-					#削除ボタン押下
+				visit login_path
+				fill_in 'メールアドレス',  with: login_user.email
+				fill_in 'パスワード', with: login_user.password
+				click_button 'ログインする'
 			end
 
 			it 'ユーザAが作成したタスクが削除されている' do
-					#FIXME
-			end
-
-			it '削除したタスクのラベルのうちどのタスクにも紐付かなくなるものは削除されていること'do
-					#FIXME
+				accept_confirm { find('.btn-outline-danger').click }
+				within 'table' do
+					expect(page).to have_no_content '削除前のタスク'
+				end
 			end
 		end
 	end

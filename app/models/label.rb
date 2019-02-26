@@ -2,5 +2,5 @@ class Label < ApplicationRecord
   has_many :label_tasks, dependent: :destroy
   has_many :tasks,       through:   :label_tasks
 
-  validates :name,  presence:true,  length:{ maximum:50 }
+  validates :name,  presence:true,  length:{ maximum:10 }
 end
