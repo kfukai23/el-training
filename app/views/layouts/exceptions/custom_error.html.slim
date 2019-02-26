@@ -1,1 +1,13 @@
-p= @error
+body.rails-default-error-page
+  .dialog
+    div
+      span
+        i.fas.fa-tasks
+        | El-Training
+      h2 お探しのページは見つかりませんでした。 
+      p
+        | アクセスしようとしたページは削除されたかURLが変更されているため、見つけることができません。
+        br/
+        | お手数ですが、URLをご確認ください。
+
+      .btn.btn-outline-primary=link_to '前のページに戻る', :back 

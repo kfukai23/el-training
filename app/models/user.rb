@@ -11,7 +11,10 @@ class User < ApplicationRecord
     after_destroy :prepend_adminless
 
     def prepend_adminless
-       throw(:abort) if User.where(admin: true).count == 0
+        if User.where(admin: true).count == 0
+            errors[:base] << "管理者ユーザーが0人になるため変更できません"
+            raise ActiveRecord::Rollback, self
+        end
     end
 
 end
