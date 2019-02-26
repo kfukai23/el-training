@@ -223,25 +223,30 @@ describe 'タスク管理機能', type: :system do
 				click_button '更新する'
 				expect(page).to have_no_content 'Tag1'
 			end 
-
 			it '削除したタスクのラベルのうちどのタスクにも紐付かなくなるものは削除されていること'do
 			#FIXME
 			end
 		end
 
 		describe 'タスク削除機能' do
+			let(:login_user) { user_a }
+			let!(:task_a) { FactoryBot.create(:task, name: "削除前のタスク", user: user_a) }
+
 			before do
-					#削除対象のタスクを作成
-					#ログイン
-					#削除ボタン押下
+				visit login_path
+				fill_in 'メールアドレス',  with: login_user.email
+				fill_in 'パスワード', with: login_user.password
+				click_button 'ログインする'
 			end
 
 			it 'ユーザAが作成したタスクが削除されている' do
-					#FIXME
-			end
-
-			it '削除したタスクのラベルのうちどのタスクにも紐付かなくなるものは削除されていること'do
-					#FIXME
+				accept_confirm { find('.btn-outline-danger').click }
+				within 'table' do
+					expect(page).to have_no_content '削除前のタスク'
+				end
+				
+				it '削除したタスクのラベルのうちどのタスクにも紐付かなくなるものは削除されていること'do
+						#FIXME
 			end
 		end
 	end
