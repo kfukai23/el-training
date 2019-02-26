@@ -13,25 +13,28 @@ module ApplicationHelper
     end
 
     # FIXME: 検索結果を表示している場合は検索条件をviewに返すように
-    # def search_condition
-    #     if request.fullpath.include?("commit=Search")
-    #         binding.pry
-    #         origin = request.fullpath.split('&')
-    #         con = []
-    #         origin.each do |o|
-    #             con << { key: o.split("=").first, value: o.split("=").second}
-    #         end
+    def search_condition
+        if request.fullpath.include?("commit=Search")
+            search_condition_hash = [] 
 
-    #         res = []        
-    #         con.each do |c|
-    #             if c[:value] != nil
-    #                 res << c
-    #             end
-    #         end
-    #         res
-    #     else
-    #         "タスク一覧"
-    #     end
-    # end
+            request.fullpath.split('&')[1..4].each do |condition|
+                search_condition_hash << { key: condition.split("=").first, value: condition.split("=").second }
+            end
 
+            res = ''
+            search_condition_hash.each do |condition| 
+                if condition[:value] != nil 
+                    res << convert(condition[:key]) + "=\"#{URI.decode(condition[:value])}\"  " 
+                end
+            end
+            res == "" ? res : res << "での検索結果："
+        end
+    end
+
+    def convert(key_string)
+        key_string.gsub(/#{CONVERSION.keys.join('|')}/, CONVERSION)
+    end    
+
+    private
+    CONVERSION = { "name" => "名称", "description" => "詳しい説明", "label" => "ラベル", "status" => "進捗" }
 end
