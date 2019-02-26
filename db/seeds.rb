@@ -50,7 +50,7 @@ User.create(name:'test_user_c', email:'test_user_c@example.com', password:'passw
 	task["status"] = statuses[rand(0..2)]
 	task["deadline"] = Faker::Date.forward(23)
 	task["priority"] = rand(0..2)
-	task["user_id"] = rand(1..3)
+	task["user_id"] = User.all.map{|user| user.id}.sample
 
 	Task.create!(task)
 end
