@@ -24,11 +24,11 @@ h3.pt-4.pt-4 タスク検索
   h3.pt-4 タスク一覧
   span.float-right= link_to 'タスクを新規登録する', new_task_path, class: 'btn btn-primary'
 / FIXME: 検索条件を表示するヘルパー 制作中
-/ h3.pt-4.pt-4  = search_condition 
 
 .mb-3
+  span= search_condition 
+  span= page_entries_info @tasks
   = paginate @tasks
-  = page_entries_info @tasks
 .mb-3
 table.table.table-hover
   thead.thead-default
