@@ -17,9 +17,10 @@ html
             li.nav-item= link_to 'タスク一覧', tasks_path, class: 'nav-link'
             - if current_user.admin?
               li.nav-item= link_to 'ユーザー一覧', admin_users_path, class: 'nav-link'
-              li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+            li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
           - else
             li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
+          li.nav-item.p-2 style="rgba(0, 0, 0, 0.5);" |
           li.nav-item= link_to 'このアプリについて', root_path, class: 'nav-link'
 
     .container
