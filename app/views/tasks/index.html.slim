@@ -14,16 +14,12 @@ h3.pt-4.pt-4 タスク検索
       .form-group.col-md-2
         = form.label :status
         = form.select :status, [["指定しない", nil], ["未着手"], ["着手中"], ["完了"]], {}, class: 'form-control'
-      / .form-group.col-md-2
-      /   = form.label :priority
-      /   = form.select :priority, options_for_select([["指定しない", nil], ["低", 0], ["中", 1], ["高", 2]]), {}, class: 'form-control'
       .form-group.col-md-1.parent
         = form.submit 'Search', class: 'children col-md-12 btn btn-outline-secondary'
 
 .mb-3
   h3.pt-4 タスク一覧
   span.float-right= link_to 'タスクを新規登録する', new_task_path, class: 'btn btn-primary'
-/ FIXME: 検索条件を表示するヘルパー 制作中
 
 .mb-3
   span.align-middle= search_condition 
