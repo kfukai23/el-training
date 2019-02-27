@@ -57,27 +57,6 @@ describe 'タスク管理機能', type: :system do
 				end
 			end
 			
-			# context '見出し「作成日時」をクリックしたとき' do
-			# 	before do
-			# 		FactoryBot.create(:task, name: "1番目", user: user_a, created_at: Time.current + 2.days )
-			# 		FactoryBot.create(:task, name: "2番目", user: user_a, created_at: Time.current + 1.days )
-			# 		FactoryBot.create(:task, name: "3番目", user: user_a, created_at: Time.current)
-	
-			# 		visit login_path
-			# 		fill_in 'メールアドレス',  with: 'a@example.com'
-			# 		fill_in 'パスワード', with: 'password'
-			# 		click_button 'ログインする'
-			# 		click_on ''
-			# 	end
-		
-			# 	it 'タスクが作成日時の降順に表示される' do 
-			# 		within '.table' do
-			# 			task_names = all('.name').map(&:text)
-			# 			expect(task_names).to eq %w(1番目 2番目 3番目) 
-			# 		end
-			# 	end
-			# end
-
 			context '見出し「優先度」をクリックしたとき' do
 				before do
 					FactoryBot.create(:task, name: "高", user: user_a, priority: 2)
