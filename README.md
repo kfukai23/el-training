@@ -15,21 +15,25 @@ This application was created in the learning process of basic Web application cr
 [現場で使える Ruby on Rails 5速習実践ガイド](https://www.amazon.co.jp/%E7%8F%BE%E5%A0%B4%E3%81%A7%E4%BD%BF%E3%81%88%E3%82%8B-Ruby-Rails-5%E9%80%9F%E7%BF%92%E5%AE%9F%E8%B7%B5%E3%82%AC%E3%82%A4%E3%83%89-%E5%A4%A7%E5%A0%B4%E5%AF%A7%E5%AD%90/dp/4839962227)
 
 ## Published at:
-https://el-training-koalamask.herokuapp.com/
+https://el-training-kaitofu.herokuapp.com/
 
 #### The following User can be used:
 
 
 [User as an admininstrator]
+
 email: "test_user_a@example.com",  password: "password"
 
 [Common user] 
+
 email: "test_user_b@example.com",  password: "password"
   
 
 ## Requirement
 Ruby 2.5.3
-Bundler 1.17.3, 
+
+Bundler 1.17.3
+
 PostgreSQL 11.1
 
 ## Installation
@@ -141,46 +145,46 @@ $ heroku run bin/rails db:migrate
 
 
 ### Tasks Table
-| column_name | data_type | not_null | default | auto increment | index | comments                                       |
-| ----------- | --------- | -------- | ------- | -------------- | ----- | ---------------------------------------------- |
-| task_id     | integer   | true     |         |                |       |                                                |
-| name        | string    | true     |         |                | true      | [validation] until 30 characters         |
-| priority    | integer   |          |         |                |       |                                                |
-| description | text      |          |         |                |       |                                                |
-| status      | string   | true     | "未着手"       |                |true       |  |
-| user_id     | integer   | true         |         |                |   true    |     |
-| deadline    | date      |          |         |                |       | [validation] should be today or later          |
-| created_at  | datetime  | true     |         |                |       |                                                |
-| updated_at  | datetime  | true     |         |                |       |                                                |
+| column_name | data_type | not_null | default | index | comments                                       |
+| ----------- | --------- | -------- | ------- | ----- | ---------------------------------------------- |
+| task_id     | integer   | true     |         |       |                                                |
+| name        | string    | true     |         | true  | [validation] until 30 character      s         |
+| priority    | integer   |          |         |       |                                                |
+| description | text      |          |         |       |                                                |
+| status      | string    | true     | "未着手" | true  |                                                |
+| user_id     | integer   | true     |         | true  |                                                |
+| deadline    | date      |          |         |       | [validation] should be today or later          |
+| created_at  | datetime  | true     |         |       |                                                |
+| updated_at  | datetime  | true     |         |       |                                                |
 
 ### User Table
-| column_name     | data_type | not_null | default | auto increment | index                                | comments |
-| --------------- | --------- | -------- | ------- | -------------- | --------------------------------------- | ----- |
-| user_id         | integer   | true     |         |                |                                         |       |
-| name            | string    | true     |         |                |                                         |       |
-| email           | string    | true     |         |                | true | [validation] should be based on RFC2822      |
-| password_digest | string    | true     |         |                |                                         |       |
-| admin           | boolean   | true     | false   |                |                                         |       |
-| created_at      | datetime  | true     |         |                |                                         |       |
-| updated_at      | datetime  | true     |         |                |                                         |       |
+| column_name     | data_type | not_null | default | index | comments |
+| --------------- | --------- | -------- | ------- | ----- | -------- |
+| user_id         | integer   | true     |         |       |          |
+| name            | string    | true     |         |       |          |
+| email           | string    | true     |         | true  | [validation] should be based on RFC2822 |
+| password_digest | string    | true     |         |       |          |
+| admin           | boolean   | true     | false   |       |          |
+| created_at      | datetime  | true     |         |       |          |
+| updated_at      | datetime  | true     |         |       |          |
 
 
 ### Labels Table
-| column_name | data_type | not_null | default | auto increment | index | comments |
-| ----------- | --------- | -------- | ------- | -------------- | ----- | -------- |
-| label_id    | integer   | true     |         |                |       |          |
-| name        | string    | true     |         |                |       |          |
-| user_id     | integer   | true     |         |                |       |          |
-| created_at  | datetime  | true     |         |                |       |          |
-| updated_at  | datetime  | true     |         |                |       |          |
+| column_name | data_type | not_null | default | index | comments |
+| ----------- | --------- | -------- | ------- | ----- | -------- |
+| label_id    | integer   | true     |         |       |          |
+| name        | string    | true     |         |       |          |
+| user_id     | integer   | true     |         |       |          |
+| created_at  | datetime  | true     |         |       |          |
+| updated_at  | datetime  | true     |         |       |          |
 
 ### LabelTasks Table
-| column_name | data_type | not_null | default | auto increment | index | comments |
-| ----------- | --------- | -------- | ------- | -------------- | ----- | -------- |
-| label_id    | integer   |          |         |                |       |          |
-| user_id     | integer   |          |         |                |       |          |
-| created_at  | datetime  | true     |         |                |       |          |
-| updated_at  | datetime  | true     |         |                |       |          |
+| column_name | data_type | not_null | default | index | comments |
+| ----------- | --------- | -------- | ------- | ----- | -------- |
+| label_id    | integer   |          |         |       |          |
+| user_id     | integer   |          |         |       |          |
+| created_at  | datetime  | true     |         |       |          |
+| updated_at  | datetime  | true     |         |       |          |
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/koalamask/el-training/blob/master/LICENSE.md) file for details
