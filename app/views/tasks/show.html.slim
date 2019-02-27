@@ -18,8 +18,11 @@ table.table.table-hover
     tr 
       th = 'ラベル'
       td 
-        - @task.labels.each do |label|
-          span.badge.badge-secondary.mr-1= label.name
+        - if @task.labels.exists?
+          - @task.labels.each do |label|
+            span.badge.badge-secondary.mr-1= label.name
+        - else 
+          span なし
     tr 
       th = Task.human_attribute_name(:updated_at)
       td = @task.updated_at.strftime('%Y-%m-%d %H:%M:%S')
