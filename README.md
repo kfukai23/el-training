@@ -20,9 +20,11 @@ https://el-training-koalamask.herokuapp.com/
 #### The following User can be used:
 
 
-[User as an admininstrator] email: test_user_a@example.com,  password: password
+[User as an admininstrator]
+email: "test_user_a@example.com",  password: "password"
 
-[Common user] email: test_user_b@example.com,  password: password
+[Common user] 
+email: "test_user_b@example.com",  password: "password"
   
 
 ## Requirement
@@ -132,9 +134,10 @@ $ heroku run bin/rails db:migrate
 ### Tables
 | no. | name  |
 | --- | ----- |
-| 1   | Task  |
-| 2   | Label |
-| 3   | User  |
+| 1   | Tasks  |
+| 2   | Users  |
+| 3   | Labels |
+| 4   | LabelTasks |
 
 
 ### Tasks Table
@@ -147,31 +150,37 @@ $ heroku run bin/rails db:migrate
 | status      | string   | true     | "未着手"       |                |true       |  |
 | user_id     | integer   | true         |         |                |   true    |     |
 | deadline    | date      |          |         |                |       | [validation] should be today or later          |
-| created_at  |           |          |         |                |       |                                                |
-| updated_at  |           |          |         |                |       |                                                |
-
-
-### Labels Table(Not created yet)
-| column_name | data_type | not_null | default | auto increment | index | comments |
-| ----------- | --------- | -------- | ------- | -------------- | ----- | -------- |
-| label_id    | integer   | true     |         |                |       |          |
-| name        | string    | true     |         |                |       |          |
-| color       | string    | true     |         |                |       |          |
-| created_at  |           |          |         |                |       |          |
-| updated_at  |           |          |         |                |       |          |
-
+| created_at  | datetime  | true     |         |                |       |                                                |
+| updated_at  | datetime  | true     |         |                |       |                                                |
 
 ### User Table
 | column_name     | data_type | not_null | default | auto increment | index                                | comments |
 | --------------- | --------- | -------- | ------- | -------------- | --------------------------------------- | ----- |
 | user_id         | integer   | true     |         |                |                                         |       |
 | name            | string    | true     |         |                |                                         |       |
-| email           | string    | true     |         |                |  | [validation] should be based on RFC2822      |
+| email           | string    | true     |         |                | true | [validation] should be based on RFC2822      |
 | password_digest | string    | true     |         |                |                                         |       |
 | admin           | boolean   | true     | false   |                |                                         |       |
-| created_at      |           |          |         |                |                                         |       |
-| updated_at      |           |          |         |                |                                         |       |
+| created_at      | datetime  | true     |         |                |                                         |       |
+| updated_at      | datetime  | true     |         |                |                                         |       |
 
+
+### Labels Table
+| column_name | data_type | not_null | default | auto increment | index | comments |
+| ----------- | --------- | -------- | ------- | -------------- | ----- | -------- |
+| label_id    | integer   | true     |         |                |       |          |
+| name        | string    | true     |         |                |       |          |
+| user_id     | integer   | true     |         |                |       |          |
+| created_at  | datetime  | true     |         |                |       |          |
+| updated_at  | datetime  | true     |         |                |       |          |
+
+### LabelTasks Table
+| column_name | data_type | not_null | default | auto increment | index | comments |
+| ----------- | --------- | -------- | ------- | -------------- | ----- | -------- |
+| label_id    | integer   |          |         |                |       |          |
+| user_id     | integer   |          |         |                |       |          |
+| created_at  | datetime  | true     |         |                |       |          |
+| updated_at  | datetime  | true     |         |                |       |          |
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/koalamask/el-training/blob/master/LICENSE.md) file for details
