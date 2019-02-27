@@ -37,7 +37,7 @@ class TasksController < ApplicationController
     label_list = params[:label].split(",")
     if @task.update(task_params)
       @task.save_labels(label_list, current_user)
-      redirect_to tasks_path, notice: "タスク「#{@task.name}」を更新しました。"
+      redirect_to task_path(@task), notice: "タスク「#{@task.name}」を更新しました。"
     else
       render :edit
     end
