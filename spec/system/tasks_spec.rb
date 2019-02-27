@@ -57,32 +57,11 @@ describe 'タスク管理機能', type: :system do
 				end
 			end
 			
-			# context '見出し「作成日時」をクリックしたとき' do
-			# 	before do
-			# 		FactoryBot.create(:task, name: "1番目", user: user_a, created_at: Time.current + 2.days )
-			# 		FactoryBot.create(:task, name: "2番目", user: user_a, created_at: Time.current + 1.days )
-			# 		FactoryBot.create(:task, name: "3番目", user: user_a, created_at: Time.current)
-	
-			# 		visit login_path
-			# 		fill_in 'メールアドレス',  with: 'a@example.com'
-			# 		fill_in 'パスワード', with: 'password'
-			# 		click_button 'ログインする'
-			# 		click_on ''
-			# 	end
-		
-			# 	it 'タスクが作成日時の降順に表示される' do 
-			# 		within '.table' do
-			# 			task_names = all('.name').map(&:text)
-			# 			expect(task_names).to eq %w(1番目 2番目 3番目) 
-			# 		end
-			# 	end
-			# end
-
 			context '見出し「優先度」をクリックしたとき' do
 				before do
-					FactoryBot.create(:task, name: "1番目", user: user_a, priority: 2)
-					FactoryBot.create(:task, name: "2番目", user: user_a, priority: 1)
-					FactoryBot.create(:task, name: "3番目", user: user_a, priority: 0)
+					FactoryBot.create(:task, name: "高", user: user_a, priority: 2)
+					FactoryBot.create(:task, name: "中", user: user_a, priority: 1)
+					FactoryBot.create(:task, name: "低", user: user_a, priority: 0)
 	
 					visit login_path
 					fill_in 'メールアドレス',  with: 'a@example.com'
@@ -94,7 +73,7 @@ describe 'タスク管理機能', type: :system do
 				it 'タスクが優先順位の昇順に表示される' do 
 					within '.table' do
 						task_names = all('.name').map(&:text)
-						expect(task_names).to eq %w(3番目 2番目 1番目) 
+						expect(task_names).to eq %w(低 中 高) 
 					end
 				end
 	
@@ -102,7 +81,7 @@ describe 'タスク管理機能', type: :system do
 					click_on '優先度'
 					within '.table' do
 						task_names = all('.name').map(&:text)
-						expect(task_names).to eq %w(1番目 2番目 3番目) 
+						expect(task_names).to eq %w(高 中 低) 
 					end
 				end
 			end
@@ -111,28 +90,28 @@ describe 'タスク管理機能', type: :system do
 		describe 'タスク検索機能' do
 			context 'ユーザAがログインしているとき' do
 				before do
-					FactoryBot.create(:task, name: "first", user: user_a, priority: 2, status: "未着手")
-					FactoryBot.create(:task, name: "second", user: user_a, priority: 1, status: "着手中")
-					FactoryBot.create(:task, name: "third", user: user_a, priority: 0, status: "完了")
+					FactoryBot.create(:task, name: "検索対象", user: user_a, priority: 2, status: "未着手")
+					FactoryBot.create(:task, name: "非対象", user: user_a, priority: 1, status: "着手中")
+					FactoryBot.create(:task, name: "非対象", user: user_a, priority: 0, status: "完了")
 					visit login_path
 					fill_in 'メールアドレス',  with: 'a@example.com'
 					fill_in 'パスワード', with: 'password'
 					click_button 'ログインする'
 
-					fill_in '名称', with: 'first'
+					fill_in '名称', with: '検索対象'
 					click_button 'Search'
 				end
 		
-				it 'タスク「first」が表示される' do 
-					expect(page).to have_content "first"
+				it 'タスク「検索対象」が表示される' do 
+					expect(page).to have_content "検索対象"
 				end
 			end
 			
 			context 'ユーザAがログインしているとき' do
 				before do
-					FactoryBot.create(:task, name: "first", user: user_a, priority: 2, status: "未着手")
-					FactoryBot.create(:task, name: "second", user: user_a, priority: 1, status: "着手中")
-					FactoryBot.create(:task, name: "third", user: user_a, priority: 0, status: "完了")
+					FactoryBot.create(:task, name: "未着手のタスク", user: user_a, priority: 2, status: "未着手")
+					FactoryBot.create(:task, name: "着手中のタスク", user: user_a, priority: 1, status: "着手中")
+					FactoryBot.create(:task, name: "完了のタスク", user: user_a, priority: 0, status: "完了")
 					visit login_path
 					fill_in 'メールアドレス',  with: 'a@example.com'
 					fill_in 'パスワード', with: 'password'
@@ -143,7 +122,7 @@ describe 'タスク管理機能', type: :system do
 				end
 				
 				it 'ユーザAが作成したタスクが進捗状況の降順に表示される' do 
-					expect(page).to have_content "first"
+					expect(page).to have_content "未着手のタスク"
 				end
 			end
 		end

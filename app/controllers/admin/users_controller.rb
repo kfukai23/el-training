@@ -31,7 +31,11 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      redirect_to admin_user_path(@user), notice: "ユーザー#{@user.name}を更新しました。"
+      if User.find(current_user.id).admin?
+        redirect_to admin_user_path(@user), notice: "ユーザー\"#{@user.name}\"を更新しました。" 
+      else
+        redirect_to tasks_path, notice: "ユーザー\"#{@user.name}\"を更新しました。" 
+      end
     else
       render :edit
     end

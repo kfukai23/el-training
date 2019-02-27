@@ -49,17 +49,18 @@ class TasksController < ApplicationController
     redirect_to tasks_path, notice: "タスク「#{task.name}」を削除しました。"
   end
 
-private
-    def task_params
-      params.require(:task).permit(:name, :description, :priority, :status, :deadline)
-    end
+  private
+  
+  def task_params
+    params.require(:task).permit(:name, :description, :priority, :status, :deadline)
+  end
 
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-    end
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 
-    def sort_column
-      Task.column_names.include?(params[:sort]) ? params[:sort] : "deadline"
-    end
+  def sort_column
+    Task.column_names.include?(params[:sort]) ? params[:sort] : "deadline"
+  end
 
 end
