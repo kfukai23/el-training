@@ -3,7 +3,6 @@ class TasksController < ApplicationController
 
   def index
     # FIXME:リファクタリングする
-    # @tasks = current_user.tasks.order(sort_column + ' ' + sort_direction).search_by_name(params[:name]).search_by_description(params[:description]).search('status', params[:status]).search('priority', params[:priority]).search_by_label(params[:label], current_user).page(params[:page]).includes(:user, :labels)
     @tasks = current_user.tasks.order(sort_column + ' ' + sort_direction).search_by_name(params[:name]).search_by_description(params[:description]).search('status', params[:status]).search_by_label(params[:label], current_user).page(params[:page]).includes(:user, :labels)
   end
 
@@ -38,7 +37,7 @@ class TasksController < ApplicationController
     label_list = params[:label].split(",")
     if @task.update(task_params)
       @task.save_labels(label_list, current_user)
-      redirect_to tasks_path, notice: "タスク「#{@task.name}」を更新しました。"
+      redirect_to task_path(@task), notice: "タスク「#{@task.name}」を更新しました。"
     else
       render :edit
     end
@@ -56,11 +55,11 @@ private
     end
 
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 
     def sort_column
-      Task.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+      Task.column_names.include?(params[:sort]) ? params[:sort] : "deadline"
     end
 
 end

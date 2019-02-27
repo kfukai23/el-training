@@ -40,7 +40,7 @@ PostgreSQL 11.1
 
 1. Clone this repository
 ```
-$ git clone git@github.com:koalamask/el-training.git
+$ git clone git@github.com:kaitofu/el-training.git
 ```
 
 2. Move into your project
@@ -109,7 +109,7 @@ $ heroku login
 
 2. Register remote repository to Heroku
 ```
-$ heroku git:remote -a el-training-koalamask
+$ heroku git:remote -a el-training-kaitofu
 ```
 
 3. Deploy application to server
@@ -187,4 +187,4 @@ $ heroku run bin/rails db:migrate
 | updated_at  | datetime  | true     |         |       |          |
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/koalamask/el-training/blob/master/LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/kaitofu/el-training/blob/master/LICENSE.md) file for details

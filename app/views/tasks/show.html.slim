@@ -7,25 +7,37 @@ h3.pt-4 タスクの詳細
 table.table.table-hover
   tbody
     tr 
-      th = Task.human_attribute_name(:id)
-      td = @task.id
-    tr 
       th = Task.human_attribute_name(:name)
       td = @task.name
     tr 
       th = Task.human_attribute_name(:description)
       td = simple_format(h(@task.description), {}, sanitize: false, wrapper_tag: 'div')
+    tr
+      th = Task.human_attribute_name(:deadline)
+      td = @task.created_at.strftime('%Y-%m-%d')
+    tr
+      th = Task.human_attribute_name(:status)
+      td = @task.status
+    tr 
+      th = Task.human_attribute_name(:priority)
+      td = @task.priority
     tr 
       th = 'ラベル'
       td 
-        - @task.labels.each do |label|
-          span.badge.badge-secondary.mr-1= label.name
+        - if @task.labels.exists?
+          - @task.labels.each do |label|
+            span.badge.badge-secondary.mr-1= label.name
+        - else 
+          span なし
+    tr 
+      th = Task.human_attribute_name(:created_at)
+      td = @task.created_at.strftime('%Y-%m-%d %H:%M:%S')
     tr 
       th = Task.human_attribute_name(:updated_at)
       td = @task.updated_at.strftime('%Y-%m-%d %H:%M:%S')
     tr 
-      th = Task.human_attribute_name(:created_at)
-      td = @task.created_at.strftime('%Y-%m-%d %H:%M:%S')
+      th = Task.human_attribute_name(:id)
+      td = @task.id
 
 = link_to '編集', edit_task_path(@task), class: 'btn btn-outline-primary mr-3'
 = link_to '削除', task_path(@task), method: :delete, data: { confirm: "タスク「#{@task.name}」を削除します。よろしいですか？" }, class: 'btn btn-outline-danger mr-3'
