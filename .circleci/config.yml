@@ -82,7 +82,7 @@ jobs:
   deploy:
     steps:
       - checkout
-      - run
+      - run:
         name: heroku deploy
         command: |
           if [ "${CIRCLE_BRANCH}" == "master" ]; then
