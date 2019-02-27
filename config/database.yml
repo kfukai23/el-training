@@ -31,3 +31,4 @@ test:
 production:
   <<: *default
   # database: db/production.sqlite3
+  database: el-training_production
