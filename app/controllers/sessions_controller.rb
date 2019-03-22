@@ -1,29 +1,29 @@
 class SessionsController < ApplicationController
-	skip_before_action :login_required
+  skip_before_action :login_required
 
-	def new
-	end
+  def new
+  end
 
-	def create
-		user = User.find_by(email: session_params[:email])
+  def create
+    user = User.find_by(email: session_params[:email])
 
-		if user&.authenticate(session_params[:password])
-			session[:user_id] = user.id
-			redirect_to tasks_path, notice: "ログインしました。こんにちは、#{user.name} 様。"
-		else
-			flash.now[:danger] = "ログインできませんでした。メールアドレスかパスワードが誤っています。"
-			render :new
-		end
-	end
+    if user&.authenticate(session_params[:password])
+      session[:user_id] = user.id
+      redirect_to tasks_path, notice: "ログインしました。こんにちは、#{user.name} 様。"
+    else
+      flash.now[:danger] = "ログインできませんでした。メールアドレスかパスワードが誤っています。"
+      render :new
+    end
+  end
 
-	def delete
-		reset_session
-		redirect_to root_path, notice: 'ログアウトしました。'
-	end
+  def delete
+    reset_session
+    redirect_to root_path, notice: 'ログアウトしました。'
+  end
 
-	private
+  private
 
-	def session_params
-		params.require(:session).permit(:email, :password)
-	end
+  def session_params
+    params.require(:session).permit(:email, :password)
+  end
 end
