@@ -22,7 +22,7 @@ class Task < ApplicationRecord
     if name == "" || name.nil?
       all
     else
-      where("name like '%" + name+ "%'")
+      where("name like ?", "%#{name}%")
     end
   end
 
@@ -30,7 +30,7 @@ class Task < ApplicationRecord
     if description == "" || description.nil?
       all
     else
-      where("description like '%" + description+ "%'")
+      where("description like ?", "%#{description}%")
     end
   end
 
@@ -46,7 +46,7 @@ class Task < ApplicationRecord
     if label == "" || label.nil?
       all
     else
-      labels = current_user.labels.where(name: label).ids
+      labels = current_user.labels.where("name = ?", label).ids
       task_ids = LabelTask.where(label_id: labels).map {|t| p t.task_id }
       Task.where(id: task_ids)
     end
