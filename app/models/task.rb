@@ -22,7 +22,7 @@ class Task < ApplicationRecord
     if name == "" || name.nil?
       all
     else
-      where("name like '%" + name+ "%'")
+      where("\"tasks\".\"name\" like '%" + name+ "%'")
     end
   end
 
