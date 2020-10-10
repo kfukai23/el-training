@@ -187,4 +187,4 @@ $ heroku run bin/rails db:migrate
 | updated_at  | datetime  | true     |         |       |          |
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/kaitofu/el-training/blob/master/LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/kaitofu/el-training/blob/master/LICENSE.md) file for details 
